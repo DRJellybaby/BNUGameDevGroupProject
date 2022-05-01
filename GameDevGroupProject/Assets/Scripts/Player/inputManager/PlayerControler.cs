@@ -38,8 +38,9 @@ public class PlayerControler : MonoBehaviour
     {
         movment();
         cameraFollow();
-        if (rollAction.triggered)
+        if(rollAction.triggered)
         {
+            dodge();
             Debug.Log("roll");
         }
     }
@@ -69,11 +70,14 @@ public class PlayerControler : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(0, targetAngle - 90, 0);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
             }
-
-            Debug.Log(targetAngle);
+            //Debug.Log(targetAngle);
         }
         else { playerAnimator.SetBool("Moving", false); }
+    }
 
-        //Debug.Log(move);
+    public void dodge()
+    {
+        playerAnimator.SetTrigger("Dodge");
+
     }
 }
