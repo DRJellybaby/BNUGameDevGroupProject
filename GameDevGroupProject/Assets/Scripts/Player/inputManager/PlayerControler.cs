@@ -16,12 +16,13 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private GameObject camera;
 
-    
+
     private CharacterController controller;
     private PlayerInput playerInput;
     private Animator playerAnimator;
 
     private InputAction moveAction;
+    private InputAction rollAction;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerControler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
         moveAction = playerInput.actions["Move"];
+        rollAction = playerInput.actions["Roll"];
         camera = GameObject.Find("Camera");
     }
 
@@ -36,6 +38,10 @@ public class PlayerControler : MonoBehaviour
     {
         movment();
         cameraFollow();
+        if (rollAction.triggered)
+        {
+            Debug.Log("roll");
+        }
     }
 
     public void cameraFollow()
@@ -68,6 +74,6 @@ public class PlayerControler : MonoBehaviour
         }
         else { playerAnimator.SetBool("Moving", false); }
 
-        Debug.Log(move);
+        //Debug.Log(move);
     }
 }
