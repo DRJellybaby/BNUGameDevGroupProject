@@ -6,16 +6,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerControler : MonoBehaviour
 {
-    [SerializeField]
-    private float playerSpeed = 20.0f;
-    [SerializeField]
-    private float gravityValue = -9.81f;
-    [SerializeField]
-    private float rotationSpeed = 100;
+    [SerializeField] private float playerSpeed = 20.0f;
+    [SerializeField] private float rotationSpeed = 100;
+    [SerializeField] private float rollDistance = 80f;
+    private float rollTime;
+    private bool isRolling;
 
-    [SerializeField]
-    private GameObject camera;
+    [SerializeField] private GameObject camera;
 
+    Vector2 Input;
+    Vector3 MoveDir;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -32,16 +32,25 @@ public class PlayerControler : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         rollAction = playerInput.actions["Roll"];
         camera = GameObject.Find("Camera");
+
+    }
+
+    private void FixedUpdate()
+    {
+        Input = moveAction.ReadValue<Vector2>();
+        MoveDir = new Vector3(Input.x, 0, Input.y);
     }
 
     void Update()
     {
-        movment();
+        if (!isRolling) {movment();}        
         cameraFollow();
         if(rollAction.triggered)
         {
-            dodge();
-            Debug.Log("roll");
+            playerAnimator.SetTrigger("Dodge");
+            rollTime = playerAnimator.GetCurrentAnimatorStateInfo(0).length;
+            StartCoroutine(dodge(MoveDir));
+            Debug.Log("roll " + rollTime);
         }
     }
 
@@ -53,14 +62,13 @@ public class PlayerControler : MonoBehaviour
 
     public void movment()
     {
-        Vector2 Input = moveAction.ReadValue<Vector2>();
-        Vector3 move = new Vector3(Input.x, 0, Input.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
-        if (move != Vector3.zero)
+        //Vector3 move = new Vector3(Input.x, 0, Input.y);
+        controller.Move(MoveDir * Time.deltaTime * playerSpeed);
+        if (MoveDir != Vector3.zero)
         {
             playerAnimator.SetBool("Moving", true);
             float targetAngle = Input.y * 90;
-            if (move == Vector3.right)
+            if (MoveDir == Vector3.right)
             {
                 Quaternion rotation = Quaternion.Euler(0, 90, 0);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
@@ -75,9 +83,28 @@ public class PlayerControler : MonoBehaviour
         else { playerAnimator.SetBool("Moving", false); }
     }
 
-    public void dodge()
-    {
-        playerAnimator.SetTrigger("Dodge");
+    //public void dodge()
+    //{
+    //   Vector2 Input = moveAction.ReadValue<Vector2>();
+    //    Vector3 move = new Vector3(Input.x, 0, Input.y);
+    //    controller.Move(move * rollDistance);
+    //}
 
+    IEnumerator dodge (Vector2 direction)
+    {
+        /*isRolling = true;
+        controller.Move(direction * Time.deltaTime * rollDistance);
+        yield return null;
+        isRolling = false;*/
+        float startTime = Time.time;
+        Debug.Log("Start time " + startTime + "target time: " + Time.time + rollTime);
+        while (Time.time < startTime + rollTime)
+        {
+            isRolling = true;
+            controller.Move(direction * Time.deltaTime * playerSpeed);
+
+            yield return null;
+        }
+        isRolling = false; 
     }
 }
