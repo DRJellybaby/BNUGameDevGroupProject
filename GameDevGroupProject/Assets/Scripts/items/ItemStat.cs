@@ -6,6 +6,8 @@ public class ItemStat : MonoBehaviour
 {
     public int maxInventoryCapacity;
     [SerializeField] private float damageValue = 20.0f;
+    //[SerializeField] private float armourValue = 10.0f;
+    //[SerializeField] private float healingValue = 10.0f;
     private EnermyControler enermyControler;
 
     // Start is called before the first frame update
@@ -22,12 +24,15 @@ public class ItemStat : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enermy")
+        if (other != null)
         {
-            enermyControler = other.GetComponent<EnermyControler>();
-            Debug.Log("hit an enermy");
-            enermyControler.takeDamage(damageValue);
+            if (other.tag == "Enermy") //add a check if the players actually swinging the sword
+            {
+                enermyControler = other.GetComponent<EnermyControler>();
+                Debug.Log("hit an enermy");
+                enermyControler.takeDamage(damageValue);
+            }
+            else { Debug.Log("hit nothing"); }
         }
-        else { Debug.Log("hit nothing"); }
     }
 }

@@ -25,6 +25,7 @@ public class Chest : MonoBehaviour
             if( interactAction.triggered)
             {
                 //run animation to open chest
+                //hide UI display "press E to open the chest" or smtg like that
                 //open chest inventory
                 Debug.Log("chest opening");
             }
@@ -50,6 +51,7 @@ public class Chest : MonoBehaviour
 
     public void closedChestInventory()
     {
+        //UI display "press E to open the chest" or smtg like that
         //run animation to close chest
     }
 }

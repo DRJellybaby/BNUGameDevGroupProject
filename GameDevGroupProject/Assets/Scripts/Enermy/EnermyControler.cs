@@ -22,11 +22,11 @@ public class EnermyControler : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        enermyHealth = -damage;
-        Debug.Log("i took " + damage + " damage");
-        if(enermyHealth >= 0)
+        enermyHealth -= damage;
+        Debug.Log("i took " + damage + " points of damage");
+        if(enermyHealth <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject); //make ragdoll [this.gameobject instead of this, as this only destroys the script]
         }
     }
 }
