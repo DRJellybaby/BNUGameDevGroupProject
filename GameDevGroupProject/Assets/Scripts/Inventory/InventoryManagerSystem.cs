@@ -12,8 +12,9 @@ public class InventoryManagerSystem : MonoBehaviour {
     }
 
     public bool Add(GameObject item) {
+        int max = GetMax(item);
         // GameObjects that can be placed in the Inventory must have a pickup script component attached
-        if (GetBalance(item) >= GetMax(item))
+        if (GetBalance(item) >= max || max == 999)
             return false;
         ItemStat itemStatScript = item.GetComponent<ItemStat>();
         if (itemStatScript) {

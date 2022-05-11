@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rollTime = 1;
     private bool isRolling;
     private bool isAttacking;
+    private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
 
     private GameObject camera;
 
@@ -109,5 +110,10 @@ public class PlayerControler : MonoBehaviour
             yield return null;
         }
         isRolling = false; 
+    }
+
+    public void SetCanInteract(bool value)
+    {
+        canInteract = value;
     }
 }
