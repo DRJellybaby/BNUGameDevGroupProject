@@ -15,8 +15,9 @@ public class PlayerControler : MonoBehaviour
 
     private GameObject camera;
 
-    private Vector2 Input;
+    private Vector2 moveInput;
     private Vector3 MoveDir;
+    Vector3 targetPosition;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -39,8 +40,8 @@ public class PlayerControler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Input = moveAction.ReadValue<Vector2>();
-        MoveDir = new Vector3(Input.x, 0, Input.y);
+        moveInput = moveAction.ReadValue<Vector2>();
+        MoveDir = new Vector3(moveInput.x, 0, moveInput.y);
     }
 
     void Update()
@@ -57,6 +58,7 @@ public class PlayerControler : MonoBehaviour
         if(attackAction.triggered)
         {
             Debug.Log("Im attacking");
+            rotationToMouse();
             playerAnimator.SetTrigger("Attack");
         }
     }
@@ -74,7 +76,7 @@ public class PlayerControler : MonoBehaviour
         playerAnimator.SetBool("Moving", true);
         if (MoveDir != Vector3.zero)
         {
-            float targetAngle = Input.y * 90;
+            float targetAngle = moveInput.y * 90;
             if (MoveDir == Vector3.right)
             {
                 Quaternion rotation = Quaternion.Euler(0, 90, 0);
@@ -89,20 +91,12 @@ public class PlayerControler : MonoBehaviour
         else { playerAnimator.SetBool("Moving", false); }
     }
 
-    /*void rotaionToMouse()
+    void rotationToMouse()
     {
-        Vector3 mousePos = Input.mousePosition;
-        if (MoveDir == Vector3.right)
-        {
-            Quaternion rotation = Quaternion.Euler(0, 90, 0);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-        }
-        else
-        {
-            Quaternion rotation = Quaternion.Euler(0, mousePos - 90, 0);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-        }
-    }*/
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
 
     IEnumerator dodge (Vector3 direction)
     {

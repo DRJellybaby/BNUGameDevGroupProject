@@ -1390,9 +1390,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6099103000172018586, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6369554477479574585, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914291194926612863, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914291194926612863, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7914291194926612863, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
       propertyPath: m_ApplyRootMotion
