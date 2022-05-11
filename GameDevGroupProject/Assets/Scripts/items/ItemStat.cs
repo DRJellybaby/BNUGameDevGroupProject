@@ -6,6 +6,7 @@ public class ItemStat : MonoBehaviour
 {
     public int maxInventoryCapacity;
     [SerializeField] private float damageValue = 20.0f;
+    private EnermyControler enermyControler;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,10 @@ public class ItemStat : MonoBehaviour
     {
         if(other.tag == "Enermy")
         {
+            enermyControler = other.GetComponent<EnermyControler>();
             Debug.Log("hit an enermy");
+            enermyControler.takeDamage(damageValue);
         }
+        else { Debug.Log("hit nothing"); }
     }
 }

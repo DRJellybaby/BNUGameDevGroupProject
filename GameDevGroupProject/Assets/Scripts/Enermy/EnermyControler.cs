@@ -23,6 +23,7 @@ public class EnermyControler : MonoBehaviour
     public void takeDamage(float damage)
     {
         enermyHealth = -damage;
+        Debug.Log("i took " + damage + " damage");
         if(enermyHealth >= 0)
         {
             Destroy(this);

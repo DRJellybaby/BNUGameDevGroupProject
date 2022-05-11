@@ -67,7 +67,7 @@ public class PlayerControler : MonoBehaviour
         Vector3 follow = new Vector3(transform.position.x, 200, transform.position.z);
         camera.transform.position = follow;
     }
-
+     
     public void movment()
     {
         //Vector3 move = new Vector3(Input.x, 0, Input.y);
@@ -79,12 +79,12 @@ public class PlayerControler : MonoBehaviour
             if (MoveDir == Vector3.right)
             {
                 Quaternion rotation = Quaternion.Euler(0, 90, 0);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
             }
             else
             {
                 Quaternion rotation = Quaternion.Euler(0, targetAngle - 90, 0);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
             }
         }
         else { playerAnimator.SetBool("Moving", false); }
