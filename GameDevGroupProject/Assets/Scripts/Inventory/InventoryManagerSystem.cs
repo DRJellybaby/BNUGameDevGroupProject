@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour {
+public class InventoryManagerSystem : MonoBehaviour {
     // List to store GameObjects in
     private List<GameObject> inventory;
 
