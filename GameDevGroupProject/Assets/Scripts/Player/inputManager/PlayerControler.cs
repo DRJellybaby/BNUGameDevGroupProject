@@ -18,7 +18,6 @@ public class PlayerControler : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 MoveDir;
-    Vector3 targetPosition;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -59,7 +58,6 @@ public class PlayerControler : MonoBehaviour
         if(attackAction.triggered)
         {
             Debug.Log("Im attacking");
-            rotationToMouse();
             playerAnimator.SetTrigger("Attack");
         }
     }
@@ -90,13 +88,6 @@ public class PlayerControler : MonoBehaviour
             }
         }
         else { playerAnimator.SetBool("Moving", false); }
-    }
-
-    void rotationToMouse()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     IEnumerator dodge (Vector3 direction)

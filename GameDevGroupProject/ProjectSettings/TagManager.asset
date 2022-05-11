@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - MountPoint
+  - Enermy
   layers:
   - Default
   - TransparentFX
