@@ -5,20 +5,21 @@ using UnityEngine;
 public class mountWeapon : MonoBehaviour
 {
     bool equiped;
-    GameObject mountpoint;
-    [SerializeField]
-    GameObject grip;
+    private GameObject mountpoint;
+    private GameObject grip;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        mountpoint = GameObject.Find("Player/Mesh/Hands/Mountpoint");
+        mountpoint = GameObject.FindWithTag("MountPoint");
+        grip = this.gameObject.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
         grip.transform.position = mountpoint.transform.position;
+        grip.transform.rotation = mountpoint.transform.rotation;
     }
 }
