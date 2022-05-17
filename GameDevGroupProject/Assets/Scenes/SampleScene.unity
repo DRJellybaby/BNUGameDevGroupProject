@@ -1133,6 +1133,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6099103000172018584, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099103000172018584, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6099103000172018585, guid: 10e7f7e6e98c547449a5cce1f2b22f6e, type: 3}
       propertyPath: m_RootOrder
       value: 4

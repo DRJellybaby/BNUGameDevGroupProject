@@ -46,9 +46,9 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (!isRolling || !isAttacking) {movment();}        
+        if (!isRolling && !isAttacking) {movment();}        
         cameraFollow();
-        if(rollAction.triggered)
+        if(rollAction.triggered && !isRolling)
         {
             playerAnimator.SetTrigger("Dodge");
             Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
@@ -93,18 +93,16 @@ public class PlayerControler : MonoBehaviour
     IEnumerator dodge (Vector3 direction)
     {
         float startTime = Time.time;
-        //Debug.Log("Start time " + startTime + " | target time: " + Time.time + rollTime);
+        //Debug.Log("Start time " + startTime + " | target time: " + (Time.time + rollTime));
         while (Time.time < startTime + rollTime)
         {
             isRolling = true;
             controller.Move(direction * Time.deltaTime * rollDistance);
+            
             yield return null;
         }
+        //Debug.Log("Finish time " + Time.time);
         isRolling = false; 
     }
 
-    public void SetCanInteract(bool value)
-    {
-        canInteract = value;
-    }
 }
