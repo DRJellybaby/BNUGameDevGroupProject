@@ -20,7 +20,7 @@ public class Senses : MonoBehaviour {
     public bool CanSeeTarget() {
         if (target != null) {
             distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
-            Debug.Log(distanceToTarget);
+            //Debug.Log(distanceToTarget);
             if (sightRange > distanceToTarget) {
                 Vector3 targetDirection = target.transform.position - transform.position;
                 float angle = Vector3.Angle(targetDirection, transform.forward);

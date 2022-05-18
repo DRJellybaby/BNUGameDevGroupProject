@@ -8,15 +8,21 @@ public class EnermyControler : MonoBehaviour
 {
     public float enermyHealth;
     public float enermyStamina;
-    public Senses sight;
 
-    private Animator animator;
+    [HideInInspector] public Senses sight;
+    [HideInInspector] public CharacterController characterController;
+    [HideInInspector] public Animator animator;
+
+
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         enermyHealth = 100;
+        enermyStamina = 100;
         sight = GetComponent<Senses>();
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,9 +38,5 @@ public class EnermyControler : MonoBehaviour
     {
         enermyHealth -= damage;
         Debug.Log("i took " + damage + " points of damage");
-        if(enermyHealth <= 0)
-        {
-            //Destroy(this.gameObject); 
-        }
     }
 }

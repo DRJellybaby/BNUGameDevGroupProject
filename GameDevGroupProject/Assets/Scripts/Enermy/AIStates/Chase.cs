@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hold<T> : AIState<T>
+public class Chase<T> : AIState<T>
 {
-    public Hold(T stateName, StateDriveBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
+    public Chase(T stateName, StateDrivenBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
 
     public override void Act()
     {
-        Debug.Log("Entering state: " + StateName);
     }
 
     public override void OnEnter()

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Return<T> : AIState<T>
+public class Death<T> : AIState<T>
 {
-    public Return(T stateName, StateDriveBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
+    public Death(T stateName, StateDrivenBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
 
     public override void Act()
     {
-        Debug.Log("Entering state: " + StateName);
+        Debug.Log("i am dead");
     }
 
     public override void OnEnter()

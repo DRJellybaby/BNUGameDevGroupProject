@@ -5,13 +5,7 @@ using UnityEngine;
 public class mountWeapon : MonoBehaviour
 {
     bool equiped;
-    private GameObject mountpoint;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        mountpoint = GameObject.FindWithTag("MountPoint");
-    }
+    public GameObject mountpoint;
 
     // Update is called once per frame
     void Update()

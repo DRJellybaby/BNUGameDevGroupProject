@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class AIState<T> : State<T> {
-    protected StateDriveBrain brain;
+    protected StateDrivenBrain brain;
     protected Vector3 moveTarget;
     protected Vector3 moveDirection;
     protected Vector3 moveRotation;
@@ -10,7 +10,7 @@ public class AIState<T> : State<T> {
 
 
 
-    public AIState(T stateName, StateDriveBrain brain, float minDuration): base(stateName, brain, minDuration) {
+    public AIState(T stateName, StateDrivenBrain brain, float minDuration): base(stateName, brain, minDuration) {
         this.brain = brain;
     }
 

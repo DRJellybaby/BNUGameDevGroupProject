@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Search<T> : AIState<T>
+public class Hold<T> : AIState<T>
 {
-    public Search(T stateName, StateDriveBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
+    public Hold(T stateName, StateDrivenBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
 
     public override void Act()
     {
