@@ -9,30 +9,29 @@ public class ItemStat : MonoBehaviour
     //[SerializeField] private float armourValue = 10.0f;
     //[SerializeField] private float healingValue = 10.0f;
     private EnermyControler enermyControler;
+    private PlayerControler playerControler;
 
-    // Start is called before the first frame update
-    void Start()
+    void start ()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other != null)
         {
-            if (other.tag == "Enermy") //add a check if the players actually swinging the sword
+            if (other.tag == "Enermy")
             {
                 enermyControler = other.GetComponent<EnermyControler>();
                 Debug.Log("hit an enermy");
                 enermyControler.takeDamage(damageValue);
             }
+            if (other.tag == "Player")
+            {
+
+            }
             else { Debug.Log("hit nothing"); }
+
         }
     }
 }

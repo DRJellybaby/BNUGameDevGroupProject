@@ -10,8 +10,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100;
     [SerializeField] private float rollDistance = 80f;
     [SerializeField] private float rollTime = 1;
-    private bool isRolling;
-    private bool isAttacking;
+    public bool isRolling;
+    public bool isAttacking;
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
 
     private GameObject camera;
@@ -57,6 +57,7 @@ public class PlayerControler : MonoBehaviour
         }
         if(attackAction.triggered)
         {
+            isAttacking = true;
             Debug.Log("Im attacking");
             playerAnimator.SetTrigger("Attack");
         }

@@ -6,27 +6,37 @@ using UnityEngine;
 
 public class EnermyControler : MonoBehaviour
 {
-    private float enermyHealth;
+    public float enermyHealth;
+    public float enermyStamina;
+
+    [HideInInspector] public Senses sight;
+    [HideInInspector] public CharacterController characterController;
+    [HideInInspector] public Animator animator;
+
+
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         enermyHealth = 100;
+        enermyStamina = 100;
+        sight = GetComponent<Senses>();
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (sight.CanSeeTarget())
+        {
+            Debug.Log("I see you " + sight.target);
+        }
     }
 
     public void takeDamage(float damage)
     {
         enermyHealth -= damage;
         Debug.Log("i took " + damage + " points of damage");
-        if(enermyHealth <= 0)
-        {
-            Destroy(this.gameObject); //make ragdoll [this.gameobject instead of this, as this only destroys the script]
-        }
     }
 }

@@ -13,6 +13,9 @@ public class StateDrivenBrain : EnermyControler
     public bool wait;
     public float waitTime = 3;
 
+    public bool chasing;
+    public GameObject chasePoint;
+
     public enum AIStates { Idle, Chase, Attack, Hold, SearchArea, Return, Death };
     public FSM<AIStates> stateMachine;
     protected float thinkInterval = 0.4f;
@@ -20,6 +23,7 @@ public class StateDrivenBrain : EnermyControler
     void Start()
     {
         base.Start();
+        Debug.Log("SDB running");
         StartCoroutine(Think());
     }
 
@@ -35,6 +39,7 @@ public class StateDrivenBrain : EnermyControler
         healthLevel = enermyHealth;
         staminaLevel = enermyStamina;
         stateMachine.Check();
+        Debug.Log("think running");
         StartCoroutine(Think());
     }
 
@@ -87,7 +92,7 @@ public class StateDrivenBrain : EnermyControler
     public bool GuardAttackToDeath(State<AIStates> currentState) { return (healthLevel <= 0); }
     public bool GuardSearchAreaToChase(State<AIStates> currentState) { return (sight.CanSeeTarget()); }
     public bool GuardSearchAreaToHold(State<AIStates> currentState) { return ((sight.CanSeeTarget()) && (minimumStamina >= staminaLevel)); }
-    public bool GuardSearchToReturn(State<AIStates> currentState) { return (!sight.CanSeeTarget() && !wait); }//add wait timer
+    public bool GuardSearchAreaToReturn(State<AIStates> currentState) { return (!sight.CanSeeTarget() && !wait); }//add wait timer
     public bool GuardSearchAreaToDeath(State<AIStates> currentState) { return (healthLevel <= 0); }
     public bool GuardHoldToSearchArea(State<AIStates> currentState) { return (!sight.CanSeeTarget()); }
     public bool GuardHoldToChase(State<AIStates> currentState) { return (minimumStamina >= staminaLevel); }
