@@ -41,7 +41,7 @@
                     "name": "mousePosition",
                     "type": "Value",
                     "id": "4cfe2ce3-d25e-498b-822a-413d0502fefc",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": ""
                 }

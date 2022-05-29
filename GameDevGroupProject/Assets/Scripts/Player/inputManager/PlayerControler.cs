@@ -24,6 +24,7 @@ public class PlayerControler : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 MoveDir;
+    private Vector3 mousePos;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -32,6 +33,7 @@ public class PlayerControler : MonoBehaviour
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
+    private InputAction mousePosition;
 
     private void Start()
     {
@@ -41,6 +43,7 @@ public class PlayerControler : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
+        mousePosition = playerInput.actions["mousePosition"];
         camera = GameObject.Find("Camera");
         cameraHeight = 400;
     }
@@ -49,6 +52,8 @@ public class PlayerControler : MonoBehaviour
     {
         moveInput = moveAction.ReadValue<Vector2>();
         MoveDir = new Vector3(moveInput.x, 0, moveInput.y);
+
+        mousePos = mousePosition.ReadValue<Vector2>();
     }
 
     void Update()
@@ -113,7 +118,7 @@ public class PlayerControler : MonoBehaviour
     IEnumerator attack()
     {
         isAttacking = true;
-
+        transform.rotation = Quaternion.Euler(new Vector3(0, mousePos.y, 0)); //currently does not work
 
 
         playerAnimator.SetTrigger("Attack");
