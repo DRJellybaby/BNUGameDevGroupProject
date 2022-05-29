@@ -13,7 +13,7 @@ public class ItemStat : MonoBehaviour
 
     void start ()
     {
-        
+        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,10 +26,7 @@ public class ItemStat : MonoBehaviour
                 Debug.Log("hit an enermy");
                 enermyControler.takeDamage(damageValue);
             }
-            if (other.tag == "Player")
-            {
-
-            }
+            if (other.tag == "Player") { playerControler.takeDamage(damageValue); }
             else { Debug.Log("hit nothing"); }
 
         }

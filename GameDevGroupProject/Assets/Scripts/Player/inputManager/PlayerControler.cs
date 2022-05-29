@@ -11,10 +11,16 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rollDistance = 80f;
     [SerializeField] private float rollTime = 1;
     public bool isRolling;
+
     public bool isAttacking;
+    public float attackRate;
+
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
 
+    [SerializeField] private float playerHealth = 100f;
+
     private GameObject camera;
+    public int cameraHeight;
 
     private Vector2 moveInput;
     private Vector3 MoveDir;
@@ -22,7 +28,7 @@ public class PlayerControler : MonoBehaviour
     private CharacterController controller;
     private PlayerInput playerInput;
     private Animator playerAnimator;
-
+    //hi
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
@@ -36,6 +42,7 @@ public class PlayerControler : MonoBehaviour
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
         camera = GameObject.Find("Camera");
+        cameraHeight = 400;
     }
 
     private void FixedUpdate()
@@ -46,33 +53,32 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (!isRolling || !isAttacking) {movment();}        
+        if (!isRolling || !isAttacking) { movment(); }
         cameraFollow();
-        if(rollAction.triggered)
+        if (rollAction.triggered)
         {
             playerAnimator.SetTrigger("Dodge");
             Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
             Debug.DrawRay(transform.position, forward, Color.green);
             StartCoroutine(dodge(MoveDir));
         }
-        if(attackAction.triggered)
+        if (attackAction.triggered)
         {
-            isAttacking = true;
-            Debug.Log("Im attacking");
-            playerAnimator.SetTrigger("Attack");
+            if(!isAttacking) { StartCoroutine(attack()); }
         }
     }
 
     public void cameraFollow()
     {
-        Vector3 follow = new Vector3(transform.position.x, 200, transform.position.z);
+        Vector3 follow = new Vector3(transform.position.x, cameraHeight, transform.position.z);
         camera.transform.position = follow;
     }
-     
+
     public void movment()
     {
         //Vector3 move = new Vector3(Input.x, 0, Input.y);
         controller.Move(MoveDir * Time.deltaTime * playerSpeed);
+  
         playerAnimator.SetBool("Moving", true);
         if (MoveDir != Vector3.zero)
         {
@@ -91,7 +97,7 @@ public class PlayerControler : MonoBehaviour
         else { playerAnimator.SetBool("Moving", false); }
     }
 
-    IEnumerator dodge (Vector3 direction)
+    IEnumerator dodge(Vector3 direction)
     {
         float startTime = Time.time;
         //Debug.Log("Start time " + startTime + " | target time: " + Time.time + rollTime);
@@ -101,7 +107,30 @@ public class PlayerControler : MonoBehaviour
             controller.Move(direction * Time.deltaTime * rollDistance);
             yield return null;
         }
-        isRolling = false; 
+        isRolling = false;
+    }
+
+    IEnumerator attack()
+    {
+        isAttacking = true;
+        Debug.Log("Im attacking");
+        playerAnimator.SetTrigger("Attack");
+        yield return new WaitForSeconds(attackRate);
+        isAttacking = false;
+    }
+
+    public void takeDamage(float damage)
+    {
+        playerHealth = playerHealth - damage;
+        if (playerHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    public void die()
+    {
+        Debug.Log("player dies");
     }
 
     public void SetCanInteract(bool value)

@@ -7,6 +7,8 @@ TagManager:
   - Weapon
   - MountPoint
   - Enermy
+  - ChasePoint
+  - Origin
   layers:
   - Default
   - TransparentFX

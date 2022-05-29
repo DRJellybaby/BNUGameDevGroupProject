@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Senses : MonoBehaviour {
-    public GameObject target;
+    private GameObject target;
     private CharacterController characterController;
-    public GameObject player;
+    
     public float viewingAngle = 200.0f;
     public float sightRange = 200.0f;
     public float distanceToTarget;
+    public float behindRange;
 
 
     // Use this for initialization
     void Start () {
         characterController = GetComponent<CharacterController>();
-	}
+        target = GameObject.FindGameObjectWithTag("Player");
+        behindRange = (sightRange / 2);
+    }
 
     // Checks if the target (player) is visable and returns a boolean value.
     public bool CanSeeTarget() {
@@ -25,7 +28,7 @@ public class Senses : MonoBehaviour {
                 Vector3 targetDirection = target.transform.position - transform.position;
                 float angle = Vector3.Angle(targetDirection, transform.forward);
                 angle = System.Math.Abs(angle);
-                if (angle < (viewingAngle / 2)) {
+                if (angle < (viewingAngle / 2) || behindRange > distanceToTarget) {
                     CharacterController targetCharacterController = target.GetComponent<CharacterController>();
                     RaycastHit hitData;
                     LayerMask playerMask = 1 << 8;

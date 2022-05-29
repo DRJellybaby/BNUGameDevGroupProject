@@ -8,8 +8,6 @@ public class AIState<T> : State<T> {
     protected Vector3 moveRotation;
     protected Quaternion lookAtRotation;
 
-
-
     public AIState(T stateName, StateDrivenBrain brain, float minDuration): base(stateName, brain, minDuration) {
         this.brain = brain;
     }

@@ -13,8 +13,9 @@ public class EnermyControler : MonoBehaviour
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public Animator animator;
 
+    public Transform origin;
 
-
+    [HideInInspector] public Transform currentPosition;
     // Start is called before the first frame update
     public void Start()
     {
@@ -23,15 +24,8 @@ public class EnermyControler : MonoBehaviour
         sight = GetComponent<Senses>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (sight.CanSeeTarget())
-        {
-            Debug.Log("I see you " + sight.target);
-        }
+        currentPosition = this.GetComponent<Transform>();
+        origin.parent = null;
     }
 
     public void takeDamage(float damage)
