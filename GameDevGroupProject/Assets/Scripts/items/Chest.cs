@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
     bool interactable = false;
 
     PlayerInput playerInput;
+
+    public GameObject UIInteractText;
+
+
+    public GameObject[] chestInventory;
 
     InputAction interactAction;
     // Start is called before the first frame update
@@ -25,18 +31,35 @@ public class Chest : MonoBehaviour
             if( interactAction.triggered)
             {
                 //run animation to open chest
-                //hide UI display "press E to open the chest" or smtg like that
-                //open chest inventory
+                UIInteractText.SetActive(false);
+                OpenChestInventory();
                 Debug.Log("chest opening");
             }
             
         }
     }
+
+    void OpenChestInventory()
+    {
+        foreach(GameObject ui in chestInventory)
+        {
+            ui.SetActive(true);
+        }
+    }
+
+    void CloseChestInventory()
+    {
+        foreach (GameObject gameObject in chestInventory)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            //UI display "press E to open the chest" or smtg like that
+            UIInteractText.SetActive(true);
             interactable = true;
         }
     }
@@ -44,14 +67,17 @@ public class Chest : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //hide UI
+            UIInteractText.SetActive(false);
+            CloseChestInventory();
             interactable = false;
         }
     }
 
-    public void closedChestInventory()
+    public void ClosedChestInventory()
     {
-        //UI display "press E to open the chest" or smtg like that
+        CloseChestInventory();
+        if(UIInteractText != null)
+        UIInteractText.SetActive(true);
         //run animation to close chest
     }
 }

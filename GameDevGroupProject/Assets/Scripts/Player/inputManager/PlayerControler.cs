@@ -113,7 +113,9 @@ public class PlayerControler : MonoBehaviour
     IEnumerator attack()
     {
         isAttacking = true;
-        Debug.Log("Im attacking");
+
+
+
         playerAnimator.SetTrigger("Attack");
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
