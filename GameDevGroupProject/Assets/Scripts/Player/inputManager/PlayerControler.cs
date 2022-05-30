@@ -12,14 +12,14 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rollTime = 1;
     public bool isRolling;
 
-    public bool isAttacking;
-    public float attackRate;
+    [SerializeField] public bool isAttacking;
+    [SerializeField] public float attackRate;
 
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
 
     [SerializeField] private float playerHealth = 100f;
 
-    private GameObject camera;
+    private Camera camera;
     public int cameraHeight;
 
     private Vector2 moveInput;
@@ -29,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     private CharacterController controller;
     private PlayerInput playerInput;
     private Animator playerAnimator;
-    //hi
+
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
@@ -44,7 +44,7 @@ public class PlayerControler : MonoBehaviour
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
         mousePosition = playerInput.actions["mousePosition"];
-        camera = GameObject.Find("Camera");
+        camera = Camera.main;
         cameraHeight = 400;
     }
 
@@ -58,6 +58,8 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
+        
+
         if (!isRolling || !isAttacking) { movment(); }
         cameraFollow();
         if (rollAction.triggered)
@@ -81,25 +83,28 @@ public class PlayerControler : MonoBehaviour
 
     public void movment()
     {
-        //Vector3 move = new Vector3(Input.x, 0, Input.y);
-        controller.Move(MoveDir * Time.deltaTime * playerSpeed);
-  
-        playerAnimator.SetBool("Moving", true);
-        if (MoveDir != Vector3.zero)
+        if (!isAttacking)
         {
-            float targetAngle = moveInput.y * 90;
-            if (MoveDir == Vector3.right)
+            controller.Move(MoveDir * Time.deltaTime * playerSpeed);
+
+            playerAnimator.SetBool("Moving", true);
+            if (MoveDir != Vector3.zero)
             {
-                Quaternion rotation = Quaternion.Euler(0, 90, 0);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                float targetAngle = moveInput.y * 90;
+
+                if (MoveDir == Vector3.right)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 90, 0);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    Quaternion rotation = Quaternion.Euler(0, targetAngle - 90, 0);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                }
             }
-            else
-            {
-                Quaternion rotation = Quaternion.Euler(0, targetAngle - 90, 0);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-            }
+            else { playerAnimator.SetBool("Moving", false); }
         }
-        else { playerAnimator.SetBool("Moving", false); }
     }
 
     IEnumerator dodge(Vector3 direction)
@@ -118,8 +123,11 @@ public class PlayerControler : MonoBehaviour
     IEnumerator attack()
     {
         isAttacking = true;
-        transform.rotation = Quaternion.Euler(new Vector3(0, mousePos.y, 0)); //currently does not work
 
+        //rotation towards mouse for attack, just need to fix issue where forward becomes up (test to see)
+        Vector3 point = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane));
+        Debug.Log(point);
+        transform.LookAt(point); 
 
         playerAnimator.SetTrigger("Attack");
         yield return new WaitForSeconds(attackRate);
