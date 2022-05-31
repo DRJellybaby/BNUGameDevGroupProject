@@ -36,7 +36,6 @@ public class StateDrivenBrain : EnermyControler
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
 
-        
     }
 
     // Update is called once per frame

@@ -11,13 +11,14 @@ public class ItemStat : MonoBehaviour
     private EnermyControler enermyControler;
     private PlayerControler playerControler;
 
-    void start ()
+    void Start()
     {
         playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("hit something");
         if (other != null)
         {
             if (other.tag == "Enermy")

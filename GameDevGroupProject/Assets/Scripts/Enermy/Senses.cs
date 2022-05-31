@@ -45,6 +45,7 @@ public class Senses : MonoBehaviour {
                     {
                         if (hitData.collider.tag == target.gameObject.tag)
                         {
+                            Debug.Log(this.gameObject + " i see the player");
                             return true;
                         }
                     }

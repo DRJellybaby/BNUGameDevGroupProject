@@ -13,6 +13,7 @@ public class PlayerControler : MonoBehaviour
     public bool isRolling;
 
     [SerializeField] public bool isAttacking;
+    [SerializeField] public bool takenDamage;
     [SerializeField] public float attackRate;
 
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
@@ -24,7 +25,7 @@ public class PlayerControler : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 MoveDir;
-    private Vector3 mousePos;
+    private Vector2 mousePos;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -33,17 +34,17 @@ public class PlayerControler : MonoBehaviour
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
-    private InputAction mousePosition;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
+
         moveAction = playerInput.actions["Move"];
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
-        mousePosition = playerInput.actions["mousePosition"];
+
         camera = Camera.main;
         cameraHeight = 400;
     }
@@ -52,14 +53,16 @@ public class PlayerControler : MonoBehaviour
     {
         moveInput = moveAction.ReadValue<Vector2>();
         MoveDir = new Vector3(moveInput.x, 0, moveInput.y);
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
-        mousePos = mousePosition.ReadValue<Vector2>();
+        mousePos = playerInput.actions["mousePosition"].ReadValue<Vector2>();
+        //Debug.Log(mousePos);
+        mousePos = camera.WorldToViewportPoint(mousePos);
+        //Debug.Log(mousePos);
     }
 
     void Update()
     {
-        
-
         if (!isRolling || !isAttacking) { movment(); }
         cameraFollow();
         if (rollAction.triggered)
@@ -69,9 +72,10 @@ public class PlayerControler : MonoBehaviour
             Debug.DrawRay(transform.position, forward, Color.green);
             StartCoroutine(dodge(MoveDir));
         }
-        if (attackAction.triggered)
+        if (attackAction.triggered && !isAttacking)
         {
-            if(!isAttacking) { StartCoroutine(attack()); }
+            isAttacking = true;
+            StartCoroutine(attack());
         }
     }
 
@@ -122,14 +126,11 @@ public class PlayerControler : MonoBehaviour
 
     IEnumerator attack()
     {
-        isAttacking = true;
-
-        //rotation towards mouse for attack, just need to fix issue where forward becomes up (test to see)
-        Vector3 point = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, camera.nearClipPlane));
-        Debug.Log(point);
-        transform.LookAt(point); 
-
+        Debug.Log("attack");
         playerAnimator.SetTrigger("Attack");
+
+        transform.LookAt(mousePos);
+
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
@@ -137,10 +138,19 @@ public class PlayerControler : MonoBehaviour
     public void takeDamage(float damage)
     {
         playerHealth = playerHealth - damage;
+        takenDamage = true;
+        StartCoroutine(invulnerable(5f));
         if (playerHealth <= 0)
         {
             die();
         }
+    }
+
+    protected IEnumerator invulnerable(float time)
+    {
+        yield return new WaitForSeconds(time);
+        takenDamage = false;
+
     }
 
     public void die()

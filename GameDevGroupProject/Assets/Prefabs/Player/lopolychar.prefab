@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 8813058863478159286}
   - component: {fileID: 3108842732198342335}
   - component: {fileID: 3108842732198342330}
-  - component: {fileID: 3108842732198342328}
+  - component: {fileID: 2000385671757667954}
   - component: {fileID: 3108842732198342331}
   - component: {fileID: 3108842732198342329}
   m_Layer: 0
@@ -959,20 +959,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &3108842732198342328
-CapsuleCollider:
+--- !u!65 &2000385671757667954
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2874908650889328502}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 4.2100477
-  m_Height: 27.070602
-  m_Direction: 1
-  m_Center: {x: 0, y: 13.035301, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 6.6445045, y: 27.254856, z: 5.8079023}
+  m_Center: {x: 0, y: 13.127428, z: 0}
 --- !u!114 &3108842732198342331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +990,7 @@ MonoBehaviour:
   rollTime: 1
   isRolling: 0
   isAttacking: 0
+  attackRate: 0
   playerHealth: 100
   cameraHeight: 0
 --- !u!114 &3108842732198342329

@@ -32,5 +32,9 @@ public class EnermyControler : MonoBehaviour
     {
         enermyHealth -= damage;
         Debug.Log("i took " + damage + " points of damage");
+        if(enermyHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
