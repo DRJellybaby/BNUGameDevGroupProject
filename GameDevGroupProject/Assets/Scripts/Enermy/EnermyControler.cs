@@ -9,8 +9,8 @@ public class EnermyControler : MonoBehaviour
     public float enermyHealth;
     public float enermyStamina;
 
-    [HideInInspector] public Senses sight;
-    [HideInInspector] public CharacterController characterController;
+    public Senses sight;
+    public CharacterController characterController;
     [HideInInspector] public Animator animator;
 
     public Transform origin;
@@ -26,6 +26,11 @@ public class EnermyControler : MonoBehaviour
         animator = GetComponent<Animator>();
         currentPosition = this.GetComponent<Transform>();
         origin.parent = null;
+    }
+
+    void update()
+    {
+        if (sight.CanSeeTarget()) { Debug.Log("i see player"); }
     }
 
     public void takeDamage(float damage)

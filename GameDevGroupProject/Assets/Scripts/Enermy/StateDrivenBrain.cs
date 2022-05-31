@@ -26,7 +26,7 @@ public class StateDrivenBrain : EnermyControler
 
     public enum AIStates { Idle, Chase, Attack, Hold, SearchArea, Return, Death };
     public FSM<AIStates> stateMachine;
-    protected float thinkInterval = 0.4f;
+    protected float thinkInterval = 0f;
 
     void Start()
     {

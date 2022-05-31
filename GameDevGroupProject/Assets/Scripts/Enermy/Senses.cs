@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Senses : MonoBehaviour {
+public class Senses : MonoBehaviour
+{
     private GameObject target;
     private CharacterController characterController;
     
@@ -16,11 +17,13 @@ public class Senses : MonoBehaviour {
     void Start () {
         characterController = GetComponent<CharacterController>();
         target = GameObject.FindGameObjectWithTag("Player");
+        //Debug.Log(this.gameObject + " " + target);
         behindRange = (sightRange / 2);
     }
 
     // Checks if the target (player) is visable and returns a boolean value.
-    public bool CanSeeTarget() {
+    public bool CanSeeTarget()
+    {
         if (target != null) {
             distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
             //Debug.Log(distanceToTarget);
@@ -45,7 +48,6 @@ public class Senses : MonoBehaviour {
                     {
                         if (hitData.collider.tag == target.gameObject.tag)
                         {
-                            Debug.Log(this.gameObject + " i see the player");
                             return true;
                         }
                     }
