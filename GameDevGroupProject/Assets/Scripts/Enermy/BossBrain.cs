@@ -35,7 +35,7 @@ public class BossBrain : BossControler
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
         attackRange = 30;
-        attackTime = (2.625f * 2.5f); //annimatiion length * (speed variable + 0.5)
+        attackTime = (2.625f * 2.5f); //annimation length * (speed variable + 0.5)
     }
 
     void Fixedupdate()
@@ -70,7 +70,10 @@ public class BossBrain : BossControler
 
     public void startTimer() { StartCoroutine(waitTimer()); }
 
-    public void attack() { StartCoroutine(attackRate()); }
+    public void attack()
+    {
+        StartCoroutine(attackRate());
+    }
 
     protected IEnumerator waitTimer()
     {
@@ -81,10 +84,37 @@ public class BossBrain : BossControler
 
     protected IEnumerator attackRate()
     {
+
         Vector3 relativePos = Player.position - transform.position;
         Quaternion rotationAngle = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotationAngle;
-        animator.SetTrigger("SlashAttack");
+
+        float slashCooldown, spinCooldown, overheadCooldown;
+
+        //decide what annimation to play (Slash, Spin or Overhead)
+        if(spinCooldown <= 0f)
+        {
+            animator.SetTrigger("SpinAttack");
+            attackTime = 5f;
+        }
+        else if (overheadCooldown <= 0f)
+        {
+            animator.SetTrigger("OverheadAttack");
+            attackTime = 5.5f;
+        }
+        else if (slashCooldown <= 0f)
+        {
+            animator.SetTrigger("SlashAttack");
+            attackTime = 2f;
+        }
+
+        //calculate duration of clip
+        /*float m_stateLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        float m_stateSpeed = animator.GetCurrentAnimatorStateInfo(0).speed;
+        attackTime = m_stateLength * m_stateSpeed;
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).tagHash);
+        Debug.Log(attackTime);*/
+
         yield return new WaitForSeconds(attackTime);
         if (BossStateMachine.CurrentState.GetName() == "BossAttack") { StartCoroutine(attackRate()); }
     }
