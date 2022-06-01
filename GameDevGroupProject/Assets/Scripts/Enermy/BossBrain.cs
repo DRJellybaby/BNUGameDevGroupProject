@@ -5,9 +5,8 @@ using UnityEngine.AI;
 
 public class BossBrain : BossControler
 {
-    //[HideInInspector] private float healthLevel;
-    //[HideInInspector] private float staminaLevel;
     public float attackRange;
+    public float damageScale;
     public float attackTime;
     public float minimumStamina;
     public float distanceToPlayer;
@@ -41,7 +40,9 @@ public class BossBrain : BossControler
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
-        attackRange = 30;
+        if(gameObject.name == "Demon GreatSword") { attackRange = 25; damageScale = 0.7f; }
+        else if(gameObject.name == "Demon_Boss_Rig") { attackRange = 60; damageScale = 1f; }
+
         damage = gameObject.transform.GetChild(0).GetComponent<enermyAttack>();
         distanceToPlayer = sight.getDistance();
     }
@@ -99,7 +100,7 @@ public class BossBrain : BossControler
         yield return new WaitForSeconds(12);
         overheadOnCooldown = false;
     }
-    protected IEnumerator slashCooldwon()
+    protected IEnumerator slashCooldown()
     {
         yield return new WaitForSeconds(2);
         slashOnCooldown = false;
@@ -108,42 +109,36 @@ public class BossBrain : BossControler
     protected IEnumerator attackRate()
     {
         attacking = true;
+        //face player
         Vector3 relativePos = Player.position - transform.position;
         Quaternion rotationAngle = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotationAngle;
 
-        //decide what annimation to play (Slash, Spin or Overhead)
-        if(!spinOnCooldown) //will do this attack every 10 secconds 
+        //checks if each move are on cooldown, and in order of priority exacutes them. also sets the attack time to the relivent duration of the animation so that they do not overlap
+        if(!spinOnCooldown)
         {
-            damage.damageValue = 50;
+            damage.damageValue = 50 * damageScale;
             animator.SetTrigger("SpinAttack");
             attackTime = 5f;
             spinOnCooldown = true;
             StartCoroutine(spinCooldown());
         }
-        else if (!overheadOnCooldown) //will do this attack every 5 secconds
+        else if (!overheadOnCooldown)
         {
-            damage.damageValue = 70;
+            damage.damageValue = 75;
             animator.SetTrigger("OverheadAttack");
             attackTime = 5.5f;
             overheadOnCooldown = true;
             StartCoroutine(overheadCooldown());
         }
-        else if (!slashOnCooldown) //will do this attack every 2 secconds
+        else if (!slashOnCooldown)
         {
             damage.damageValue = 25;
             animator.SetTrigger("SlashAttack");
             attackTime = 2f;
             slashOnCooldown = true;
-            StartCoroutine(slashCooldwon());
+            StartCoroutine(slashCooldown());
         }
-
-        //calculate duration of clip
-        /*float m_stateLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        float m_stateSpeed = animator.GetCurrentAnimatorStateInfo(0).speed;
-        attackTime = m_stateLength * m_stateSpeed;
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).tagHash);
-        Debug.Log(attackTime);*/
         
         yield return new WaitForSeconds(attackTime);
         attacking = false;
