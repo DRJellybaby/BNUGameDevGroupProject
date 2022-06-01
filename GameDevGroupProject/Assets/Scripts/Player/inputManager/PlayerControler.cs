@@ -143,7 +143,7 @@ public class PlayerControler : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        playerHealth -= damage * (1 - armourEquiped().physicalArmourValue);
+        playerHealth -= damage * (1 - armourEquiped().physicalArmourValue/100);
         takenDamage = true;
         StartCoroutine(invulnerable(5f));
         if (playerHealth <= 0)
