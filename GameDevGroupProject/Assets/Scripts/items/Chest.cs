@@ -12,6 +12,7 @@ public class Chest : MonoBehaviour
 
     public GameObject UIInteractText;
 
+    Animator animator;
 
     public GameObject[] chestInventory;
 
@@ -20,6 +21,9 @@ public class Chest : MonoBehaviour
     void Awake()
     {
         playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
+
+        animator = this.gameObject.GetComponent<Animator>();
+
         interactAction = playerInput.actions["Interact"];
     }
 
@@ -30,7 +34,6 @@ public class Chest : MonoBehaviour
         {
             if( interactAction.triggered)
             {
-                //run animation to open chest
                 UIInteractText.SetActive(false);
                 OpenChestInventory();
                 Debug.Log("chest opening");
@@ -41,6 +44,7 @@ public class Chest : MonoBehaviour
 
     void OpenChestInventory()
     {
+        animator.SetBool("Open", true);
         foreach(GameObject ui in chestInventory)
         {
             ui.SetActive(true);
@@ -53,6 +57,7 @@ public class Chest : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        animator.SetBool("Open", false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,6 +83,5 @@ public class Chest : MonoBehaviour
         CloseChestInventory();
         if(UIInteractText != null)
         UIInteractText.SetActive(true);
-        //run animation to close chest
     }
 }

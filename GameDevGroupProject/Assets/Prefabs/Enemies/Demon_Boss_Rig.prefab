@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 438956113539900513}
   - component: {fileID: 438956113539900522}
   m_Layer: 0
-  m_Name: Demon_Boss_Rig 1
+  m_Name: Demon_Boss_Rig
   m_TagString: Enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
