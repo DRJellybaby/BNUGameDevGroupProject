@@ -9,6 +9,7 @@ TagManager:
   - Enermy
   - ChasePoint
   - Origin
+  - Armour
   layers:
   - Default
   - TransparentFX

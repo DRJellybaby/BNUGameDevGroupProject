@@ -14,7 +14,7 @@ public class PlayerControler : MonoBehaviour
     public bool isRolling;
 
     [SerializeField] public bool isAttacking;
-    [SerializeField] public bool takenDamage;
+    [SerializeField] public bool takingDamage;
     [SerializeField] public float attackRate;
 
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
@@ -52,7 +52,6 @@ public class PlayerControler : MonoBehaviour
         attackAction = playerInput.actions["Attack"];
 
         camera = Camera.main;
-        cameraHeight = 400;
     }
 
     private void FixedUpdate()
@@ -80,6 +79,11 @@ public class PlayerControler : MonoBehaviour
         }
         if (attackAction.triggered && !isAttacking)
         {
+            Debug.Log(mousePos);
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cameraHeight));
+            Debug.Log(mouse);
+            Quaternion angle = Quaternion.LookRotation(mouse, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);
             isAttacking = true;
             StartCoroutine(attack());
         }
@@ -143,14 +147,13 @@ public class PlayerControler : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        playerHealth -= damage * (1 - armourEquiped().physicalArmourValue/100);
-        takenDamage = true;
-        StartCoroutine(invulnerable(5f));
-        if (playerHealth <= 0)
-        {
-            die();
-        }
-        Debug.Log("Player health: " + playerHealth);
+            playerHealth -= damage * (1 - armourEquiped().physicalArmourValue / 100);
+            takingDamage = true;
+            if (playerHealth <= 0)
+            {
+                die();
+            }
+            Debug.Log("Player health: " + playerHealth);
     }
 
     private ItemStat armourEquiped()
@@ -164,13 +167,6 @@ public class PlayerControler : MonoBehaviour
         }
         return null;
         
-    }
-
-    protected IEnumerator invulnerable(float time)
-    {
-        yield return new WaitForSeconds(time);
-        takenDamage = false;
-
     }
 
     public void die()
