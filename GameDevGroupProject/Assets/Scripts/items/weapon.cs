@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
             if (other.tag == "Player")
             {
                 playerControler = other.GetComponent<PlayerControler>();
-                Debug.Log("hit an enermy");
+                Debug.Log("Player  was hit");
                 playerControler.takeDamage(playerStats.TotalDamage(this.gameObject));
             }
             else { Debug.Log("hit nothing"); }

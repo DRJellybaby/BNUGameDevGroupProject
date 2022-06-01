@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class PlayerControler : MonoBehaviour
 
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
 
-    [SerializeField] private float playerHealth = 100f;
+    [SerializeField] private float playerHealth;
 
     private Camera camera;
     public int cameraHeight;
@@ -30,6 +31,7 @@ public class PlayerControler : MonoBehaviour
     private CharacterController controller;
     private PlayerInput playerInput;
     private Animator playerAnimator;
+    private PlayerStats playerStats;
 
     private InputAction moveAction;
     private InputAction rollAction;
@@ -40,6 +42,10 @@ public class PlayerControler : MonoBehaviour
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
+
+        playerHealth = 100 * (1 + playerStats.vitality/100);
+        Debug.Log("Player health: " + playerHealth);
 
         moveAction = playerInput.actions["Move"];
         rollAction = playerInput.actions["Roll"];
@@ -137,13 +143,27 @@ public class PlayerControler : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        playerHealth = playerHealth - damage;
+        playerHealth -= damage * (1 - armourEquiped().physicalArmourValue);
         takenDamage = true;
         StartCoroutine(invulnerable(5f));
         if (playerHealth <= 0)
         {
             die();
         }
+        Debug.Log("Player health: " + playerHealth);
+    }
+
+    private ItemStat armourEquiped()
+    {
+        foreach(Transform tr in gameObject.transform)
+        {
+            if(tr.tag == "Armour")
+            {
+                return tr.GetComponent<ItemStat>();
+            }
+        }
+        return null;
+        
     }
 
     protected IEnumerator invulnerable(float time)

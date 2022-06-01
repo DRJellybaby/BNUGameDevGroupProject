@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 3108842732198342335}
   - component: {fileID: 3108842732198342330}
   - component: {fileID: 2000385671757667954}
+  - component: {fileID: 8332968179060225620}
   - component: {fileID: 3108842732198342331}
   - component: {fileID: 3108842732198342329}
   m_Layer: 0
@@ -972,6 +973,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.6445045, y: 27.254856, z: 5.8079023}
   m_Center: {x: 0, y: 13.127428, z: 0}
+--- !u!114 &8332968179060225620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874908650889328502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43805644aa934764f9a3e4d20ebb0d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 0
+  dexterity: 0
+  intelligence: 0
+  stamina: 0
+  vitality: 0
 --- !u!114 &3108842732198342331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,6 +1008,7 @@ MonoBehaviour:
   rollTime: 1
   isRolling: 0
   isAttacking: 0
+  takenDamage: 0
   attackRate: 0
   playerHealth: 100
   cameraHeight: 0
