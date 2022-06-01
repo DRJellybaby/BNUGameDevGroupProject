@@ -17,7 +17,6 @@ public class Senses : MonoBehaviour
     void Start () {
         characterController = GetComponent<CharacterController>();
         target = GameObject.FindGameObjectWithTag("Player");
-        //Debug.Log(this.gameObject + " " + target);
         behindRange = (sightRange / 2);
     }
 
@@ -26,7 +25,6 @@ public class Senses : MonoBehaviour
     {
         if (target != null) {
             distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
-            //Debug.Log(distanceToTarget);
             if (sightRange > distanceToTarget) {
                 Vector3 targetDirection = target.transform.position - transform.position;
                 float angle = Vector3.Angle(targetDirection, transform.forward);

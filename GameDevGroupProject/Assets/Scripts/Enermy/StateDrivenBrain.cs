@@ -48,6 +48,12 @@ public class StateDrivenBrain : EnermyControler
         stateMachine.CurrentState.OnStateTriggerEnter(collider);
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, attackRange);
+    }
+
     protected IEnumerator Think()
     {
         yield return new WaitForSeconds(thinkInterval);

@@ -35,7 +35,7 @@ public class BossBrain : BossControler
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
         attackRange = 30;
-        attackTime = (2.625f * 2.5f);
+        attackTime = (2.625f * 2.5f); //annimatiion length * (speed variable + 0.5)
     }
 
     void Fixedupdate()

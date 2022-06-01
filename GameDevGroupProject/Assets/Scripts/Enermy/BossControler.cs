@@ -31,7 +31,7 @@ public class BossControler : MonoBehaviour
     {
         //if (sight.CanSeeTarget()) { Debug.Log("i see player"); }
         //distanceToTarget = Vector3.Distance(sight.targetPosition, this.transform.position);
-        Debug.Log(sight.distanceToTarget);
+        //Debug.Log(sight.distanceToTarget);
     }
 
     public void takeDamage(float damage)
