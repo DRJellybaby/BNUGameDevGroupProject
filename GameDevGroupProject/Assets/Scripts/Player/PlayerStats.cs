@@ -7,12 +7,58 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
 
-    public float strength, dexterity, intelligence, stamina, vitality;
+    public float strength, dexterity, intelligence, stamina, staminaRefillRate, maxStamina, vitality;
     ItemStat itemStat;
+
+    bool replenish = true;
 
     private void Awake()
     {
         
+    }
+
+    private void Start()
+    {
+        stamina = maxStamina;
+        StartCoroutine("RefillStamina");
+    }
+
+    IEnumerator RefillStamina ()
+    {
+        while (true)
+        {
+            if (stamina < maxStamina && replenish)
+                stamina += staminaRefillRate * 0.1f;
+            if (stamina > maxStamina)
+                stamina = maxStamina;
+            yield return new WaitForSeconds(0.4f);
+            Debug.Log(stamina);
+        }
+    }
+
+    public void UseStamina(float staminaToUse)
+    {
+        if(stamina > 0)
+        {
+            if(stamina - staminaToUse > 0)
+            {
+                stamina -= staminaToUse;
+            }
+            else
+            {
+                StartCoroutine("PlayerOverheat");
+                stamina = 0;
+            }
+        }
+    }
+
+    IEnumerator PlayerOverheat()
+    {
+        gameObject.GetComponent<PlayerControler>().SetCanInteract(false);
+        replenish = false;
+        yield return new WaitForSeconds(2.5f);
+        gameObject.GetComponent<PlayerControler>().SetCanInteract(true);
+        replenish = true;
     }
 
     //depends on your armour/magic resist thi will be a check trough inventory equiped armour

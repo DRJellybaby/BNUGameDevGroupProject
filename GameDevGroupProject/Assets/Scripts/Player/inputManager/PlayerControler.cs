@@ -19,7 +19,7 @@ public class PlayerControler : MonoBehaviour
     public bool vulnerable = true;
     [SerializeField] public float attackRate;
 
-    private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
+    private bool canInteract = true; //a bool value that changes when an object finds player as a trigger (collider)
 
     [SerializeField] private float playerHealth;
 
@@ -38,7 +38,6 @@ public class PlayerControler : MonoBehaviour
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
-    
 
     private void Start()
     {
@@ -47,7 +46,7 @@ public class PlayerControler : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         playerStats = GetComponent<PlayerStats>();
 
-        playerHealth = 100 * (1 + playerStats.vitality/100);
+        playerHealth = 100 * (1 + playerStats.vitality / 100);
         Debug.Log("Player health: " + playerHealth);
 
         moveAction = playerInput.actions["Move"];
@@ -71,24 +70,27 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (!isRolling || !isAttacking) { movment(); }
-        cameraFollow();
-        if (rollAction.triggered && !isRolling)
+        if (canInteract)
         {
-            playerAnimator.SetTrigger("Dodge");
-            Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-            Debug.DrawRay(transform.position, forward, Color.green);
-            StartCoroutine(dodge(MoveDir));
-        }
-        if (attackAction.triggered && !isAttacking)
-        {
-            /*Debug.Log(mousePos);
-            Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cameraHeight));
-            Debug.Log(mouse);
-            Quaternion angle = Quaternion.LookRotation(mouse, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);*/
-            isAttacking = true;
-            StartCoroutine(attack());
+            if (!isRolling || !isAttacking) { movment(); }
+            cameraFollow();
+            if (rollAction.triggered && !isRolling)
+            {
+                playerAnimator.SetTrigger("Dodge");
+                Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+                Debug.DrawRay(transform.position, forward, Color.green);
+                StartCoroutine(dodge(MoveDir));
+            }
+            if (attackAction.triggered && !isAttacking)
+            {
+                /*Debug.Log(mousePos);
+                Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cameraHeight));
+                Debug.Log(mouse);
+                Quaternion angle = Quaternion.LookRotation(mouse, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);*/
+                isAttacking = true;
+                StartCoroutine(attack());
+            }
         }
     }
 
@@ -127,14 +129,13 @@ public class PlayerControler : MonoBehaviour
     IEnumerator dodge(Vector3 direction)
     {
         float startTime = Time.time;
-        
+        playerStats.UseStamina(30f);
         while (Time.time < startTime + rollTime)
         {
             if (Time.time < startTime + rollTime * (1 - armourEquiped().weightValue / 100))
                 vulnerable = false;
             else
                 vulnerable = true;
-            Debug.Log(isRolling);
             isRolling = true;
             controller.Move(direction * Time.deltaTime * rollDistance);
             yield return null;
@@ -144,6 +145,7 @@ public class PlayerControler : MonoBehaviour
 
     IEnumerator attack()
     {
+        playerStats.UseStamina(15f);
         Debug.Log("attack");
         playerAnimator.SetTrigger("Attack");
 

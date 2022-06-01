@@ -993,7 +993,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 90
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!143 &3108842732198342330
 CharacterController:
@@ -1042,6 +1042,8 @@ MonoBehaviour:
   dexterity: 0
   intelligence: 0
   stamina: 0
+  staminaRefillRate: 0
+  maxStamina: 0
   vitality: 100
 --- !u!114 &3108842732198342331
 MonoBehaviour:
@@ -1059,6 +1061,7 @@ MonoBehaviour:
   rotationSpeed: 1000
   rollDistance: 80
   rollTime: 1
+  Dead: {fileID: 0}
   isRolling: 0
   isAttacking: 0
   takingDamage: 0
