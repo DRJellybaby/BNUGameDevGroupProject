@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public int baseDamage;
     private int playerDamageMod;
     private EnermyControler enermyControler;
+    private PlayerControler playerControler;
     private PlayerStats playerStats;
 
     void Start()
@@ -28,7 +29,9 @@ public class Weapon : MonoBehaviour
             }
             if (other.tag == "Player")
             {
-
+                playerControler = other.GetComponent<PlayerControler>();
+                Debug.Log("hit an enermy");
+                playerControler.takeDamage(playerStats.TotalDamage(this.gameObject));
             }
             else { Debug.Log("hit nothing"); }
 
