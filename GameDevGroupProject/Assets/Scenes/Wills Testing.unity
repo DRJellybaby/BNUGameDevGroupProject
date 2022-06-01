@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1916077372, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: m_TagString
+      value: Armour
+      objectReference: {fileID: 0}
     - target: {fileID: 45550572596199434, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -255,6 +259,10 @@ PrefabInstance:
       value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: rollTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: attackRate
       value: 1
       objectReference: {fileID: 0}
@@ -265,6 +273,14 @@ PrefabInstance:
     - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: playerSpeed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: cameraHeight
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: rollDistance
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: rotationSpeed
@@ -280,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3219627895484116428, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 3219627895484116428, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: m_LocalPosition.z

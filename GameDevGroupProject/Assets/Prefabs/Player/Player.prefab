@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1916077374}
   m_Layer: 8
   m_Name: Simple_Armour
-  m_TagString: Untagged
+  m_TagString: Armour
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1061,7 +1061,8 @@ MonoBehaviour:
   rollTime: 1
   isRolling: 0
   isAttacking: 0
-  takenDamage: 0
+  takingDamage: 0
+  vulnerable: 0
   attackRate: 1
   playerHealth: 100
   cameraHeight: 0

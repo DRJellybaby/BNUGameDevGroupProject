@@ -15,6 +15,7 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] public bool isAttacking;
     [SerializeField] public bool takingDamage;
+    public bool vulnerable = true;
     [SerializeField] public float attackRate;
 
     private bool canInteract = false; //a bool value that changes when an object finds player as a trigger (collider)
@@ -36,6 +37,7 @@ public class PlayerControler : MonoBehaviour
     private InputAction moveAction;
     private InputAction rollAction;
     private InputAction attackAction;
+    
 
     private void Start()
     {
@@ -70,7 +72,7 @@ public class PlayerControler : MonoBehaviour
     {
         if (!isRolling || !isAttacking) { movment(); }
         cameraFollow();
-        if (rollAction.triggered)
+        if (rollAction.triggered && !isRolling)
         {
             playerAnimator.SetTrigger("Dodge");
             Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
@@ -79,11 +81,11 @@ public class PlayerControler : MonoBehaviour
         }
         if (attackAction.triggered && !isAttacking)
         {
-            Debug.Log(mousePos);
+            /*Debug.Log(mousePos);
             Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cameraHeight));
             Debug.Log(mouse);
             Quaternion angle = Quaternion.LookRotation(mouse, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);*/
             isAttacking = true;
             StartCoroutine(attack());
         }
@@ -124,9 +126,14 @@ public class PlayerControler : MonoBehaviour
     IEnumerator dodge(Vector3 direction)
     {
         float startTime = Time.time;
-        //Debug.Log("Start time " + startTime + " | target time: " + Time.time + rollTime);
+        
         while (Time.time < startTime + rollTime)
         {
+            if (Time.time < startTime + rollTime * (1 - armourEquiped().weightValue / 100))
+                vulnerable = false;
+            else
+                vulnerable = true;
+            Debug.Log(isRolling);
             isRolling = true;
             controller.Move(direction * Time.deltaTime * rollDistance);
             yield return null;
@@ -147,6 +154,8 @@ public class PlayerControler : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+        if (vulnerable)
+        {
             playerHealth -= damage * (1 - armourEquiped().physicalArmourValue / 100);
             takingDamage = true;
             if (playerHealth <= 0)
@@ -154,6 +163,9 @@ public class PlayerControler : MonoBehaviour
                 die();
             }
             Debug.Log("Player health: " + playerHealth);
+        }
+        else
+            Debug.Log("Ha gay, aka invulnerable character");
     }
 
     private ItemStat armourEquiped()
