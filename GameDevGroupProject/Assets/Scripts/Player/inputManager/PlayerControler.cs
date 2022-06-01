@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100;
     [SerializeField] private float rollDistance = 80f;
     [SerializeField] private float rollTime = 1;
+    [SerializeField] private GameObject Dead;
     public bool isRolling;
 
     [SerializeField] public bool isAttacking;
@@ -52,7 +53,7 @@ public class PlayerControler : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
-
+        Dead.SetActive(false);
         camera = Camera.main;
     }
 
@@ -184,6 +185,7 @@ public class PlayerControler : MonoBehaviour
     public void die()
     {
         Debug.Log("player dies");
+        Dead.SetActive(true);
     }
 
     public void SetCanInteract(bool value)

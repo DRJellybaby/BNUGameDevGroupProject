@@ -20,6 +20,11 @@ public class Senses : MonoBehaviour
         behindRange = (sightRange / 2);
     }
 
+    public float getDistance()
+    {
+        return distanceToTarget;
+    }
+
     // Checks if the target (player) is visable and returns a boolean value.
     public bool CanSeeTarget()
     {

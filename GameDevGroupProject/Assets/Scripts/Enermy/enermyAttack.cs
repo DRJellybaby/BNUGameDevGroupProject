@@ -19,12 +19,7 @@ public class enermyAttack : MonoBehaviour
     {
         if (other != null)
         {
-            if (other.tag == "Enermy" && transform.parent.tag != "Enermy")
-            {
-                enermyControler = other.GetComponent<EnermyControler>();
-                enermyControler.takeDamage(damageValue);
-            }
-            else if (other.tag == "Player") { playerControler.takeDamage(damageValue); }
+            if (other.tag == "Player") { playerControler.takeDamage(damageValue); }
 
         }
     }

@@ -10,8 +10,12 @@ public class BossBrain : BossControler
     public float attackRange;
     public float attackTime;
     public float minimumStamina;
+    public float distanceToPlayer;
+
+    private enermyAttack damage;
     //float slashCooldown = 0, spinCooldown = 0, overheadCooldown = 0;
     bool slashOnCooldown, spinOnCooldown, overheadOnCooldown;
+    bool attacking;
 
     [HideInInspector] public bool wait;
     [HideInInspector] public float waitTime = 3;
@@ -23,6 +27,8 @@ public class BossBrain : BossControler
 
     [HideInInspector] public bool returning;
     [HideInInspector] public Quaternion startRotation;
+
+    
 
     public enum BossAIStates { BossIdle, BossMove, BossDie, BossAttack};
     public FSM<BossAIStates> BossStateMachine;
@@ -36,16 +42,15 @@ public class BossBrain : BossControler
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
         attackRange = 30;
-    }
-
-    void Fixedupdate()
-    {
-        Debug.Log(distanceToTarget);
+        damage = gameObject.transform.GetChild(0).GetComponent<enermyAttack>();
+        distanceToPlayer = sight.getDistance();
     }
 
     // Update is called once per frame
     void Update()
     {
+        sight.CanSeeTarget();
+        distanceToPlayer = sight.getDistance();
         BossStateMachine.CurrentState.Act();
     }
 
@@ -60,12 +65,10 @@ public class BossBrain : BossControler
         BossStateMachine.CurrentState.OnStateTriggerEnter(collider);
     }
 
-    void cooldowns()
-    { 
-}
-
     protected IEnumerator Think()
     {
+        if(BossStateMachine.CurrentState.GetName() == "BossMove") { thinkInterval = 0; }
+        else { thinkInterval = 0.4f; }
         yield return new WaitForSeconds(thinkInterval);
 
         BossStateMachine.Check();
@@ -88,12 +91,12 @@ public class BossBrain : BossControler
 
     protected IEnumerator spinCooldown()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(20);
         spinOnCooldown = false;
     }
     protected IEnumerator overheadCooldown()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(12);
         overheadOnCooldown = false;
     }
     protected IEnumerator slashCooldwon()
@@ -104,15 +107,15 @@ public class BossBrain : BossControler
 
     protected IEnumerator attackRate()
     {
-        bool attacking = false;
+        attacking = true;
         Vector3 relativePos = Player.position - transform.position;
         Quaternion rotationAngle = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotationAngle;
 
-
         //decide what annimation to play (Slash, Spin or Overhead)
-        if(!spinOnCooldown) //will do this attack every 10 secconds
+        if(!spinOnCooldown) //will do this attack every 10 secconds 
         {
+            damage.damageValue = 50;
             animator.SetTrigger("SpinAttack");
             attackTime = 5f;
             spinOnCooldown = true;
@@ -120,14 +123,15 @@ public class BossBrain : BossControler
         }
         else if (!overheadOnCooldown) //will do this attack every 5 secconds
         {
+            damage.damageValue = 70;
             animator.SetTrigger("OverheadAttack");
             attackTime = 5.5f;
             overheadOnCooldown = true;
             StartCoroutine(overheadCooldown());
-
         }
         else if (!slashOnCooldown) //will do this attack every 2 secconds
         {
+            damage.damageValue = 25;
             animator.SetTrigger("SlashAttack");
             attackTime = 2f;
             slashOnCooldown = true;
@@ -140,11 +144,12 @@ public class BossBrain : BossControler
         attackTime = m_stateLength * m_stateSpeed;
         Debug.Log(animator.GetCurrentAnimatorStateInfo(0).tagHash);
         Debug.Log(attackTime);*/
-        attacking = false;
+        
         yield return new WaitForSeconds(attackTime);
+        attacking = false;
+        yield return new WaitForSeconds(1);
         if (BossStateMachine.CurrentState.GetName() == "BossAttack") { StartCoroutine(attackRate()); }
     }
-
 
     protected void Awake()
     {
@@ -173,13 +178,13 @@ public class BossBrain : BossControler
     //Guards (Out of idle)
     public bool GuardBossIdleToBossMove(State<BossAIStates> currentState) { return (sight.CanSeeTarget()); }
     public bool GuardBossIdleToBossDie(State<BossAIStates> currentState) { return (bossHealth <= 0); }
-    public bool GuardBossIdleToBossAttack(State<BossAIStates> currentState) { return (sight.distanceToTarget <= attackRange); }
+    public bool GuardBossIdleToBossAttack(State<BossAIStates> currentState) { return (distanceToPlayer <= attackRange); }
     //Guards (Out of move)
     public bool GuardBossMoveToBossIdle(State<BossAIStates> currentState) { return (!sight.CanSeeTarget()); }
     public bool GuardBossMoveToBossDie(State<BossAIStates> currentState) { return (bossHealth <= 0); }
-    public bool GuardBossMoveToBossAttack(State<BossAIStates> currentState) { return (sight.distanceToTarget <= attackRange); }
+    public bool GuardBossMoveToBossAttack(State<BossAIStates> currentState) { return (distanceToPlayer <= attackRange); }
     //Guards (out of Attack)
     public bool GuardBossAttackToBossIdle(State<BossAIStates> currentState) { return (!sight.CanSeeTarget()); }
     public bool GuardBossAttackToBossDie(State<BossAIStates> currentState) { return (bossHealth <= 0); }
-    public bool GuardBossAttackToBossMove(State<BossAIStates> currentState) { return !(sight.distanceToTarget <= attackRange); }
+    public bool GuardBossAttackToBossMove(State<BossAIStates> currentState) { return ((distanceToPlayer >= attackRange) && !attacking); }
 }

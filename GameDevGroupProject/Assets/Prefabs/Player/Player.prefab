@@ -1065,7 +1065,7 @@ MonoBehaviour:
   vulnerable: 0
   attackRate: 1
   playerHealth: 100
-  cameraHeight: 0
+  cameraHeight: 400
 --- !u!114 &3108842732198342329
 MonoBehaviour:
   m_ObjectHideFlags: 0

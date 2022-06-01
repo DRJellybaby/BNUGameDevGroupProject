@@ -56,6 +56,7 @@ public class StateDrivenBrain : EnermyControler
 
     protected IEnumerator Think()
     {
+        sight.CanSeeTarget();
         yield return new WaitForSeconds(thinkInterval);
         
         stateMachine.Check();

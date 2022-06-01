@@ -7,13 +7,13 @@ public class BossAttack <T> : BossAIStates<T>
     public BossAttack(T stateName, BossBrain controller, float minDuration) : base(stateName, controller, minDuration) { }
 
 
-    public override void Act() {}
+    public override void Act() { brain.navMeshAgent.isStopped = true; }
 
     public override void OnEnter()
     {
-        Debug.Log("Distance: " + brain.distanceToTarget + "|" + "Attack Range: " + brain.attackRange);
         brain.navMeshAgent.isStopped = true;
         brain.navMeshAgent.velocity = Vector3.zero;
+        Debug.Log("Distance: " + brain.distanceToPlayer + "|" + "Attack Range: " + brain.attackRange);
         brain.attack();
         base.OnEnter();
     }
