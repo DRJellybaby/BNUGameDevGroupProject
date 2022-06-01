@@ -10,7 +10,8 @@ public class BossBrain : BossControler
     public float attackRange;
     public float attackTime;
     public float minimumStamina;
-
+    //float slashCooldown = 0, spinCooldown = 0, overheadCooldown = 0;
+    bool slashOnCooldown, spinOnCooldown, overheadOnCooldown;
 
     [HideInInspector] public bool wait;
     [HideInInspector] public float waitTime = 3;
@@ -35,7 +36,6 @@ public class BossBrain : BossControler
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
         attackRange = 30;
-        attackTime = (2.625f * 2.5f); //annimation length * (speed variable + 0.5)
     }
 
     void Fixedupdate()
@@ -60,6 +60,10 @@ public class BossBrain : BossControler
         BossStateMachine.CurrentState.OnStateTriggerEnter(collider);
     }
 
+    void cooldowns()
+    { 
+}
+
     protected IEnumerator Think()
     {
         yield return new WaitForSeconds(thinkInterval);
@@ -82,30 +86,52 @@ public class BossBrain : BossControler
         wait = false;
     }
 
+    protected IEnumerator spinCooldown()
+    {
+        yield return new WaitForSeconds(15);
+        spinOnCooldown = false;
+    }
+    protected IEnumerator overheadCooldown()
+    {
+        yield return new WaitForSeconds(7);
+        overheadOnCooldown = false;
+    }
+    protected IEnumerator slashCooldwon()
+    {
+        yield return new WaitForSeconds(2);
+        slashOnCooldown = false;
+    }
+
     protected IEnumerator attackRate()
     {
-
+        bool attacking = false;
         Vector3 relativePos = Player.position - transform.position;
         Quaternion rotationAngle = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotationAngle;
 
-        float slashCooldown, spinCooldown, overheadCooldown;
 
         //decide what annimation to play (Slash, Spin or Overhead)
-        if(spinCooldown <= 0f)
+        if(!spinOnCooldown) //will do this attack every 10 secconds
         {
             animator.SetTrigger("SpinAttack");
             attackTime = 5f;
+            spinOnCooldown = true;
+            StartCoroutine(spinCooldown());
         }
-        else if (overheadCooldown <= 0f)
+        else if (!overheadOnCooldown) //will do this attack every 5 secconds
         {
             animator.SetTrigger("OverheadAttack");
             attackTime = 5.5f;
+            overheadOnCooldown = true;
+            StartCoroutine(overheadCooldown());
+
         }
-        else if (slashCooldown <= 0f)
+        else if (!slashOnCooldown) //will do this attack every 2 secconds
         {
             animator.SetTrigger("SlashAttack");
             attackTime = 2f;
+            slashOnCooldown = true;
+            StartCoroutine(slashCooldwon());
         }
 
         //calculate duration of clip
@@ -114,7 +140,7 @@ public class BossBrain : BossControler
         attackTime = m_stateLength * m_stateSpeed;
         Debug.Log(animator.GetCurrentAnimatorStateInfo(0).tagHash);
         Debug.Log(attackTime);*/
-
+        attacking = false;
         yield return new WaitForSeconds(attackTime);
         if (BossStateMachine.CurrentState.GetName() == "BossAttack") { StartCoroutine(attackRate()); }
     }
