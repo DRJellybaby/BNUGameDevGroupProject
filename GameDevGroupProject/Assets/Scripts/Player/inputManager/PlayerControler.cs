@@ -166,7 +166,7 @@ public class PlayerControler : MonoBehaviour
             Debug.Log("Player health: " + playerHealth);
         }
         else
-            Debug.Log("Ha gay, aka invulnerable character");
+            Debug.Log("invulnerable character");
     }
 
     private ItemStat armourEquiped()

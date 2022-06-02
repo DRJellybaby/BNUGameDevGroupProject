@@ -73,7 +73,7 @@ public class PlayerStats : MonoBehaviour
 
         return temp;
     }
-    public void AddStatstrength(float howMuch)
+    public void AddStatStrength(float howMuch)
     {
         strength += howMuch;
     }
@@ -93,7 +93,7 @@ public class PlayerStats : MonoBehaviour
     {
         vitality += howMuch;
     }
-    public void RemoveStatstrength(float howMuch)
+    public void RemoveStatStrength(float howMuch)
     {
         strength -= howMuch;
     }
