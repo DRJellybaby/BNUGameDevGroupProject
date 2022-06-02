@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,13 @@ public class Chest : MonoBehaviour
 {
     bool interactable = false;
 
+    public bool locked;
+
     PlayerInput playerInput;
 
     public GameObject UIInteractText;
+
+    public GameObject UILockedText;
 
     Animator animator;
 
@@ -32,14 +37,46 @@ public class Chest : MonoBehaviour
     {
         if(interactable)
         {
-            if( interactAction.triggered)
+            if(interactAction.triggered)
             {
-                UIInteractText.SetActive(false);
-                OpenChestInventory();
-                Debug.Log("chest opening");
+                if (this.gameObject.name == "Chest")
+                {
+                    UIInteractText.SetActive(false);
+                    OpenChestInventory();
+                    Debug.Log("chest opening");
+                }
+                else if(gameObject.name == "Door")
+                {
+                    
+                    if((CheckForUnlock() && locked) || !locked)
+                    {
+                        UIInteractText.SetActive(false);
+                        animator.SetBool("Open", !animator.GetBool("Open"));
+                    }
+                    else
+                    {
+                        StartCoroutine("ShowLocked");
+                    }
+                }
             }
             
         }
+    }
+
+    IEnumerator Showlocked()
+    {
+        UILockedText.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        UILockedText.SetActive(false);
+    }
+
+    bool CheckForUnlock()
+    {
+        if (GameObject.FindWithTag("Player").GetComponent<InventoryManagerSystem>().FindItem("Key") != null)
+        {
+            return true;
+        }
+        else return false;
     }
 
     void OpenChestInventory()

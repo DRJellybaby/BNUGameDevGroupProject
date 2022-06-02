@@ -11,19 +11,14 @@ public class InventoryManagerSystem : MonoBehaviour {
         inventory = new List<GameObject>();
     }
 
-    public bool Add(GameObject item) {
+    public void Add(GameObject item) {
         int max = GetMax(item);
         // GameObjects that can be placed in the Inventory must have a pickup script component attached
         if (GetBalance(item) >= max || max == 999)
-            return false;
+            return;
         ItemStat itemStatScript = item.GetComponent<ItemStat>();
-        if (itemStatScript) {
+        if (itemStatScript != null)
             inventory.Add(item);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     public bool Use(GameObject searchItem)
@@ -33,7 +28,6 @@ public class InventoryManagerSystem : MonoBehaviour {
         {
             // Remove from list
             inventory.Remove(foundItem);
-            
             return true;
         }
         else return false;
@@ -64,7 +58,10 @@ public class InventoryManagerSystem : MonoBehaviour {
         List<GameObject> foundItems = inventory.FindAll(delegate(GameObject obj) { return obj.tag == tag; });
         return foundItems;
     }
-
+    public GameObject FindItem(string tag)
+    {
+        return inventory.Find((x) => x.tag == tag);
+    }
 
 
 }
