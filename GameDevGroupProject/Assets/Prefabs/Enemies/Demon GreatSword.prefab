@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043581019308050290}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbae5ca08c7a6194f9c0657ea234f4b5, type: 3}
   m_Name: 
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043581019308050290}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df16de2e999ac844891d0d9e05465e6e, type: 3}
   m_Name: 
@@ -1964,6 +1964,7 @@ MonoBehaviour:
   distanceToTarget: 0
   currentPosition: {fileID: 0}
   attackRange: 0
+  damageScale: 0
   attackTime: 0
   minimumStamina: 0
   distanceToPlayer: 0
@@ -1981,7 +1982,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043581019308050290}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3930b9b0a62fbd343a237f9bc350c86f, type: 3}
   m_Name: 

@@ -1038,12 +1038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43805644aa934764f9a3e4d20ebb0d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 0
-  dexterity: 0
-  intelligence: 0
-  stamina: 0
-  staminaRefillRate: 0
-  maxStamina: 0
+  strength: 5
+  dexterity: 5
+  intelligence: 5
+  stamina: 100
+  staminaRefillRate: 5
+  maxStamina: 100
   vitality: 100
 --- !u!114 &3108842732198342331
 MonoBehaviour:
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   vulnerable: 0
   attackRate: 1
   playerHealth: 100
+  camera: {fileID: 0}
   cameraHeight: 400
 --- !u!114 &3108842732198342329
 MonoBehaviour:

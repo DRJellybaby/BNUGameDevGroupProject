@@ -182,30 +182,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: stamina
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: strength
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: dexterity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: maxStamina
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: intelligence
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332968179060225620, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
-      propertyPath: staminaRefillRate
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
 --- !u!1 &298326103
@@ -1894,6 +1870,18 @@ PrefabInstance:
     - target: {fileID: 7043581019308050290, guid: 7763b5c2093ef964182b25c47dad1adf, type: 3}
       propertyPath: m_Name
       value: Demon GreatSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043581019308050292, guid: 7763b5c2093ef964182b25c47dad1adf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043581019308050294, guid: 7763b5c2093ef964182b25c47dad1adf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043581019308050295, guid: 7763b5c2093ef964182b25c47dad1adf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7043581019308050301, guid: 7763b5c2093ef964182b25c47dad1adf, type: 3}
       propertyPath: m_RootOrder
