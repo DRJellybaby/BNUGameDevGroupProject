@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e58eb36fd37814dac364d28a95ec8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 200
+  playerSpeed: 100
   rotationSpeed: 1000
   rollDistance: 80
   rollTime: 1

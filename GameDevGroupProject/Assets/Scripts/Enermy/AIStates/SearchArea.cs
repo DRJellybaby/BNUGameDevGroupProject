@@ -14,6 +14,7 @@ public class SearchArea<T> : AIState<T>
         brain.wait = true;
         brain.navMeshAgent.isStopped = true;
         brain.animator.SetBool("Moving", false);
+        brain.navMeshAgent.ResetPath();
         brain.startTimer();
         base.OnEnter();
     }

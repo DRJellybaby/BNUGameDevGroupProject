@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 7043581019308050292}
   - component: {fileID: 7043581019308050293}
   m_Layer: 0
-  m_Name: Demon GreatSword
+  m_Name: Demon GreatSword small
   m_TagString: Enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,7 +1848,7 @@ Transform:
   m_GameObject: {fileID: 7043581019308050290}
   m_LocalRotation: {x: -0, y: 0.6693157, z: -0, w: -0.74297816}
   m_LocalPosition: {x: 1633.6743, y: 0.3999977, z: -31.335192}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 7043581018540010287}
   - {fileID: 7043581019693822847}
@@ -1902,9 +1902,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 4.34
-  m_Height: 44.43
+  m_Height: 109.35605
   m_Direction: 1
-  m_Center: {x: 0, y: 15.55, z: 0}
+  m_Center: {x: 0, y: 48.013023, z: 0}
 --- !u!95 &7043581019308050297
 Animator:
   serializedVersion: 3
@@ -2001,8 +2001,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 150
-  m_Acceleration: 300
+  m_Speed: 100
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 20

@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 6632766063808986291}
   - component: {fileID: 8654333467722324160}
   - component: {fileID: 7451129081205959830}
+  - component: {fileID: 6426317578188802253}
   m_Layer: 0
   m_Name: Levy_Rig
   m_TagString: Enermy
@@ -94,8 +95,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7680153668670530927}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10000
+  m_Drag: 1000
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -162,19 +163,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 7680153668670530927}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3.9
-  m_Speed: 50
-  m_Acceleration: 50
+  m_Radius: 10
+  m_Speed: 90
+  m_Acceleration: 10000
   avoidancePriority: 50
-  m_AngularSpeed: 200
+  m_AngularSpeed: 10000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 28.01
+  m_Height: 30
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &6632766063808986291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +241,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!208 &6426317578188802253
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680153668670530927}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4.36, y: 14.2, z: 4.63}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 13.82, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7779131254041264697
 GameObject:
   m_ObjectHideFlags: 0

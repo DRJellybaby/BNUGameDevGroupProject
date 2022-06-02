@@ -14,6 +14,7 @@ public class Chase<T> : AIState<T>
 
     public override void OnEnter()
     {
+        brain.navMeshAgent.ResetPath();
         brain.chasing = true;
         brain.animator.SetBool("Moving", true);
         base.OnEnter();

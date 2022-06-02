@@ -13,6 +13,7 @@ public class Idle<T> : AIState<T>
 
     public override void OnEnter()
     {
+        brain.navMeshAgent.ResetPath();
         base.OnEnter();
     }
 
