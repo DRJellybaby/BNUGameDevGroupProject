@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))] //automaticaly assigns some of the components required for the prefab
 public class PlayerControler : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 20.0f;
@@ -23,7 +23,7 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] private float playerHealth;
 
-    private Camera camera;
+    [SerializeField] private Camera camera;
     public int cameraHeight;
 
     private Vector2 moveInput;
@@ -63,9 +63,7 @@ public class PlayerControler : MonoBehaviour
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         mousePos = playerInput.actions["mousePosition"].ReadValue<Vector2>();
-        //Debug.Log(mousePos);
         mousePos = camera.WorldToViewportPoint(mousePos);
-        //Debug.Log(mousePos);
     }
 
     void Update()
