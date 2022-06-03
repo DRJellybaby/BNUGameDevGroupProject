@@ -165,7 +165,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &6045270913471568296
 Transform:
@@ -416,7 +416,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!143 &438956113539900527
 CharacterController:
@@ -429,7 +429,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 23.1
+  m_Height: 40.8
   m_Radius: 4.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -481,8 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbae5ca08c7a6194f9c0657ea234f4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enermyHealth: 0
-  enermyStamina: 0
+  enermyHealth: 1000
+  enermyStamina: 100
   ragdoll: {fileID: 3570058106668051176, guid: 8ea18b9ca3a6e2942829586a634200bf, type: 3}
   sight: {fileID: 0}
   characterController: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &5745820911426120379
 Transform:
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 780835309528593695}
   - component: {fileID: 780835309528593692}
   - component: {fileID: 780835309528593690}
-  - component: {fileID: 780835309528593693}
+  - component: {fileID: 711566053}
   m_Layer: 0
   m_Name: Demon_Boss_Weapon
   m_TagString: Weapon
@@ -806,7 +806,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11.639823, y: 48.08174, z: 1}
   m_Center: {x: 0.000006815193, y: 10.36991, z: -0.000019491903}
---- !u!114 &780835309528593693
+--- !u!114 &711566053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,10 +815,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 780835309528593694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e469f24a7f845044c8d8e357213dd188, type: 3}
+  m_Script: {fileID: 11500000, guid: 432ddacd12ada6b4792d74fb50be7e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageValue: 30
 --- !u!1 &780835309946814508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2109,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4460992065294760220
 Transform:
@@ -2337,7 +2336,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 4908719006971471201}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3630,7 +3629,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3597152212868129421
 Transform:
