@@ -1,3 +1,8 @@
+/*
+ * A poorly named script that actually controls all of the interactables: doors, chests, skill book
+ * A little bit hard coded but it works :)
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Script made by Guy Walker and edited to fit the purpose
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

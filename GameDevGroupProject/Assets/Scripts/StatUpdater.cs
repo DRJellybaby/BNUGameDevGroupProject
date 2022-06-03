@@ -1,3 +1,4 @@
+// A script controlling the UI health and stamina
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

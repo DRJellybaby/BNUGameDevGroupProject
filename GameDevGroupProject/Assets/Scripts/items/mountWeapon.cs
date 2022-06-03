@@ -1,3 +1,4 @@
+//A script that moves the weapon into correct position rotation of players grip
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

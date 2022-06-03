@@ -1,3 +1,5 @@
+//A variable holder for basic stats of weapon item, or armour
+//Not all of the values have to be over 0 for the code to work
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

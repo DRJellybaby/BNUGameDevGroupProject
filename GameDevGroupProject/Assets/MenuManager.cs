@@ -1,3 +1,4 @@
+//Function holder for menu buttons
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

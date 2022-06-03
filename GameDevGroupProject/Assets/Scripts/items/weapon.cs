@@ -1,3 +1,8 @@
+/*
+ * A script on weapons that checks for trigger, recognises the player or enemy and implies damage based on stats of player/weapon
+ *
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
