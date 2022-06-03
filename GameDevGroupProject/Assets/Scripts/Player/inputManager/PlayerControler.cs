@@ -71,7 +71,7 @@ public class PlayerControler : MonoBehaviour
     {
         if(other.tag == "Portal")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 
