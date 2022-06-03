@@ -7,6 +7,11 @@ TagManager:
   - Weapon
   - MountPoint
   - Enermy
+  - ChasePoint
+  - Origin
+  - Armour
+  - Inventory
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -15,7 +20,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - groundMask
   - playerMask
   - coverMask
   - aiMask
