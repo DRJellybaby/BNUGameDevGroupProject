@@ -21,7 +21,7 @@ public class PlayerControler : MonoBehaviour
 
     private bool canInteract = true; //a bool value that changes when an object finds player as a trigger (collider)
 
-    [SerializeField] private float playerHealth;
+    [SerializeField] public float playerHealth;
 
     [SerializeField] private Camera camera;
     public int cameraHeight;
