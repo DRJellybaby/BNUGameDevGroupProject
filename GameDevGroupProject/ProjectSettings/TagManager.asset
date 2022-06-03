@@ -12,6 +12,7 @@ TagManager:
   - Armour
   - Inventory
   - Key
+  - Melee
   layers:
   - Default
   - TransparentFX

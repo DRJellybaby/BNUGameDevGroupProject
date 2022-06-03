@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2612719195411557621}
   m_Layer: 0
   m_Name: Longsword
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432ddacd12ada6b4792d74fb50be7e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 0
 --- !u!65 &2612719195411557621
 BoxCollider:
   m_ObjectHideFlags: 0
