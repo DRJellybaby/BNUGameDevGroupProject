@@ -121,4 +121,9 @@ public class Chest : MonoBehaviour
         if(UIInteractText != null)
         UIInteractText.SetActive(true);
     }
+
+    public void ItemTaken()
+    {
+        chestInventory[1].SetActive(false);
+    }
 }
