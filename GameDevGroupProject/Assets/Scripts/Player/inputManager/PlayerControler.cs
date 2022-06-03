@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))] //automaticaly assigns some of the components required for the prefab
 public class PlayerControler : MonoBehaviour
@@ -64,6 +65,15 @@ public class PlayerControler : MonoBehaviour
 
         mousePos = playerInput.actions["mousePosition"].ReadValue<Vector2>();
         mousePos = camera.WorldToViewportPoint(mousePos);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Portal")
+        {
+            Debug.Log("Teleport");
+            SceneManager.LoadScene(1);
+        }
     }
 
     void Update()
