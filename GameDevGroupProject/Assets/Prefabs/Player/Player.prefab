@@ -943,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 2874908650889328502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 280.9688, y: 0, z: -123.99066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7866015154526669246}
   - {fileID: 4768039190066175526}
@@ -1072,9 +1072,9 @@ MonoBehaviour:
   playerHealth: 100
   camera: {fileID: 0}
   cameraHeight: 400
-  m_AudioSource: {fileID: 0}
+  m_AudioSource: {fileID: 1928588599484125466}
   attackSound: {fileID: 8300000, guid: 9380e01e98ffac24ca3669ad7e4e8805, type: 3}
-  run: {fileID: 8300000, guid: 163355ceb98ceec4d8742a1630eb19c6, type: 3}
+  run: {fileID: 8300000, guid: 24d381b815b32d04182be1c74e240894, type: 3}
 --- !u!114 &2765228991291824916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,7 +1127,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 243e4eb4afa3da04b85107fc53b29e32, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 24d381b815b32d04182be1c74e240894, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
