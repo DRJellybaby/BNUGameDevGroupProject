@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Weapon : MonoBehaviour
+public class weapon : MonoBehaviour
 {
-    public int baseDamage;
     private int playerDamageMod;
     private EnermyControler enermyControler;
     private PlayerControler playerControler;
@@ -19,8 +18,10 @@ public class Weapon : MonoBehaviour
     //basic damage script for weapons, idea is they move with the animation, and so the colliders apply damage.
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("tags dont work");
         if (other != null)
         {
+            
             if (other.tag == "Enermy")
             {
                 enermyControler = other.GetComponent<EnermyControler>();

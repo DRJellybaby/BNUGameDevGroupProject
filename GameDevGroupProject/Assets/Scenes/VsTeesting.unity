@@ -753,21 +753,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon_Boss_Rig
       objectReference: {fileID: 0}
-    - target: {fileID: 438956113539900512, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 962834562465431258, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 962834562465431258, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 962834562465431258, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 962834562465431258, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
       propertyPath: m_LocalPosition.x

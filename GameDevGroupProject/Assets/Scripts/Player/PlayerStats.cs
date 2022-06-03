@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
             if (stamina > maxStamina)
                 stamina = maxStamina;
             yield return new WaitForSeconds(0.4f);
-            Debug.Log(stamina);
+            //Debug.Log(stamina);
         }
     }
 

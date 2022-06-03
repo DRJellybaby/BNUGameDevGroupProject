@@ -8,6 +8,7 @@ public class EnermyControler : MonoBehaviour
 {
     public float enermyHealth;
     public float enermyStamina;
+    public GameObject ragdoll;
 
     public Senses sight;
     public CharacterController characterController;
@@ -39,6 +40,8 @@ public class EnermyControler : MonoBehaviour
         Debug.Log("i took " + damage + " points of damage");
         if(enermyHealth <= 0)
         {
+            if (this.gameObject.name == "Demon_Boss_Rig")
+                Instantiate(ragdoll, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

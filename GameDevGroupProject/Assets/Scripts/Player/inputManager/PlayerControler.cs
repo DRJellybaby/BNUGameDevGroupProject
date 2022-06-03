@@ -144,7 +144,7 @@ public class PlayerControler : MonoBehaviour
     IEnumerator attack()
     {
         playerStats.UseStamina(15f);
-        Debug.Log("attack");
+        //Debug.Log("attack");
         playerAnimator.SetTrigger("Attack");
 
         transform.LookAt(mousePos);

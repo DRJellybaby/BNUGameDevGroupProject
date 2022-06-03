@@ -63,13 +63,13 @@ public abstract class State<T>{
 	}
 
 	public virtual void OnLeave(){
-        Debug.Log("OnLeave " + GetName() + " : " + Time.time);
+        //Debug.Log("OnLeave " + GetName() + " : " + Time.time);
         onLeaveTime = Time.time;
     }
 	
 	public virtual void OnEnter(){
         onEnterTime = Time.time;
-        Debug.Log("OnEnter " + GetName() + " : " + Time.time);
+        //Debug.Log("OnEnter " + GetName() + " : " + Time.time);
         stateFinished = false;
         triggerEntered = false;
         animationFinished = false;

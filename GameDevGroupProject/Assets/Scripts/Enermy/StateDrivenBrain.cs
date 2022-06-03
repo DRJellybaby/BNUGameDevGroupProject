@@ -69,7 +69,7 @@ public class StateDrivenBrain : EnermyControler
 
     protected IEnumerator waitTimer()
     {
-        Debug.Log("waiting");
+        //Debug.Log("waiting");
         yield return new WaitForSeconds(waitTime);
         wait = false;
     }

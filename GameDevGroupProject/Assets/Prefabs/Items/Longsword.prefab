@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 917951929687966171}
   - component: {fileID: 573901940633623392}
   - component: {fileID: 5676110508294343683}
+  - component: {fileID: 4910266759343967126}
   - component: {fileID: 2612719195411557621}
   m_Layer: 0
   m_Name: Longsword
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639eb7b12b7965a4b95e18a3897cc24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mountpoint: {fileID: 0}
 --- !u!114 &5676110508294343683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,8 +65,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxInventoryCapacity: 0
   damageValue: 20
-  armourValue: 10
+  magicDamageValue: 0
+  attackSpeedValue: 0
+  staminaCostValue: 0
+  physicalArmourValue: 0
+  magicArmourValue: 0
+  weightValue: 0
   healingValue: 10
+--- !u!114 &4910266759343967126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573901940633623393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432ddacd12ada6b4792d74fb50be7e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 0
 --- !u!65 &2612719195411557621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573901940633623393}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 12.35, z: 1.1}
