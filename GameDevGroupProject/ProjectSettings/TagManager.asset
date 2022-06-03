@@ -13,6 +13,7 @@ TagManager:
   - Inventory
   - Key
   - Melee
+  - Portal
   layers:
   - Default
   - TransparentFX
