@@ -19,7 +19,6 @@ public class InventoryManagerSystem : MonoBehaviour {
         if (GetBalance(item) >= max || max == 999 || itemStatScript == null)
             return;
             inventory.Add(item);
-        Debug.Log("cry");
     }
 
     public bool Use(GameObject searchItem)

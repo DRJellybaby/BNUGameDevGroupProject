@@ -20,6 +20,7 @@ public class Chest : MonoBehaviour
     Animator animator;
 
     public GameObject[] chestInventory;
+    public GameObject[] skillBook;
 
     InputAction interactAction;
     // Start is called before the first frame update
@@ -39,9 +40,9 @@ public class Chest : MonoBehaviour
         {
             if(interactAction.triggered)
             {
+                UIInteractText.SetActive(false);
                 if (this.gameObject.name == "Chest")
                 {
-                    UIInteractText.SetActive(false);
                     OpenChestInventory();
                     Debug.Log("chest opening");
                 }
@@ -50,7 +51,6 @@ public class Chest : MonoBehaviour
                     
                     if((CheckForUnlock() && locked) || !locked)
                     {
-                        UIInteractText.SetActive(false);
                         this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Open", true);
                     }
                     else
@@ -58,11 +58,29 @@ public class Chest : MonoBehaviour
                         StartCoroutine("ShowLocked");
                     }
                 }
+                else if(this.gameObject.name == "Open Book")
+                {
+                    OpenSkillBook();
+                }
             }
             
         }
     }
 
+    private void OpenSkillBook()
+    {
+        foreach (GameObject ui in skillBook)
+        {
+            ui.SetActive(true);
+        }
+    }
+ private void CloseSkillBook()
+    {
+        foreach (GameObject ui in skillBook)
+        {
+            ui.SetActive(false);
+        }
+    }
     IEnumerator ShowLocked()
     {
         UILockedText.SetActive(true);
@@ -117,11 +135,15 @@ public class Chest : MonoBehaviour
             UIInteractText.SetActive(false);
             if (this.gameObject.name == "Chest")
                 CloseChestInventory();
-            if (gameObject.name == "Door")
+            else if (gameObject.name == "Door")
                 this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Close", true);
-            interactable = false;
+            else if (gameObject.name == "Open Book")
+                CloseSkillBook();
+                interactable = false;
         }
     }
+
+   
 
     public void ClosedChestInventory()
     {
@@ -129,9 +151,20 @@ public class Chest : MonoBehaviour
         if(UIInteractText != null)
         UIInteractText.SetActive(true);
     }
+    public void ClosedSkillBook()
+    {
+        CloseSkillBook();
+        if (UIInteractText != null)
+            UIInteractText.SetActive(true);
+    }
 
     public void ItemTaken()
     {
         chestInventory[1].SetActive(false);
+    }
+
+    public void SkillChosen(int index)
+    {
+        skillBook[index + 1].SetActive(false);
     }
 }
