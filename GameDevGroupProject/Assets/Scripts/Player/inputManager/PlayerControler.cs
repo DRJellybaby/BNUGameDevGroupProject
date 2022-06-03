@@ -40,6 +40,10 @@ public class PlayerControler : MonoBehaviour
     private InputAction rollAction;
     private InputAction attackAction;
 
+    [SerializeField] private AudioSource m_AudioSource;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip run;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -55,6 +59,8 @@ public class PlayerControler : MonoBehaviour
         attackAction = playerInput.actions["Attack"];
         Dead.SetActive(false);
         camera = Camera.main;
+
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -90,11 +96,7 @@ public class PlayerControler : MonoBehaviour
             }
             if (attackAction.triggered && !isAttacking)
             {
-                /*Debug.Log(mousePos);
-                Vector3 mouse = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cameraHeight));
-                Debug.Log(mouse);
-                Quaternion angle = Quaternion.LookRotation(mouse, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, angle, 187);*/
+                m_AudioSource.PlayOneShot(attackSound, 1);
                 isAttacking = true;
                 StartCoroutine(attack());
             }
@@ -112,10 +114,15 @@ public class PlayerControler : MonoBehaviour
         if (!isAttacking)
         {
             controller.Move(MoveDir * Time.deltaTime * playerSpeed);
-
+            
             playerAnimator.SetBool("Moving", true);
             if (MoveDir != Vector3.zero)
             {
+                if(!m_AudioSource.isPlaying)
+                {
+                    m_AudioSource.Play();
+                    m_AudioSource.loop = true;
+                }
                 float targetAngle = moveInput.y * 90;
 
                 if (MoveDir == Vector3.right)
@@ -129,7 +136,13 @@ public class PlayerControler : MonoBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
                 }
             }
-            else { playerAnimator.SetBool("Moving", false); }
+            else
+            {
+                playerAnimator.SetBool("Moving", false);
+                m_AudioSource.Stop();
+                m_AudioSource.loop = false;
+            }
+
         }
     }
 

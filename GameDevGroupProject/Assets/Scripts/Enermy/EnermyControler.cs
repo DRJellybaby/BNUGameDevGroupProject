@@ -16,6 +16,8 @@ public class EnermyControler : MonoBehaviour
 
     public Transform origin;
 
+    
+
     [HideInInspector] public Transform currentPosition;
     // Start is called before the first frame update
     public void Start()

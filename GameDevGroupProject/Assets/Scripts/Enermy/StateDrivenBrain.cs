@@ -24,6 +24,10 @@ public class StateDrivenBrain : EnermyControler
     [HideInInspector] public bool returning;
     [HideInInspector] public Quaternion startRotation;
 
+    [SerializeField] private AudioSource m_AudioSource;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip run;
+
     public enum AIStates { Idle, Chase, Attack, Hold, SearchArea, Return, Death };
     public FSM<AIStates> stateMachine;
     protected float thinkInterval = 0f;
@@ -35,13 +39,23 @@ public class StateDrivenBrain : EnermyControler
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
         startRotation = GetComponent<Transform>().rotation;
-
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         stateMachine.CurrentState.Act();
+        if(stateMachine.CurrentState.GetName() == "Chase" || stateMachine.CurrentState.GetName() == "return")
+        {
+            m_AudioSource.Play();
+            m_AudioSource.loop = true;
+        }
+        else
+        {
+            m_AudioSource.Stop();
+            m_AudioSource.loop = false;
+        }
     }
     protected virtual void OnTriggerEnter(Collider collider)
     {
@@ -77,6 +91,7 @@ public class StateDrivenBrain : EnermyControler
     protected IEnumerator attackRate()
     {
         animator.SetTrigger("Attack");
+        m_AudioSource.PlayOneShot(attackSound, 1);
         yield return new WaitForSeconds(attackTime);
         Vector3 relativePos = Player.position - transform.position;
         Quaternion rotationAngle = Quaternion.LookRotation(relativePos, Vector3.up);

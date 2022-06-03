@@ -27,7 +27,8 @@ public class BossBrain : BossControler
     [HideInInspector] public bool returning;
     [HideInInspector] public Quaternion startRotation;
 
-    
+    [SerializeField] private AudioSource m_AudioSource;
+    [SerializeField] private AudioClip attackSound;
 
     public enum BossAIStates { BossIdle, BossMove, BossDie, BossAttack};
     public FSM<BossAIStates> BossStateMachine;
@@ -53,6 +54,17 @@ public class BossBrain : BossControler
         sight.CanSeeTarget();
         distanceToPlayer = sight.getDistance();
         BossStateMachine.CurrentState.Act();
+
+        if (BossStateMachine.CurrentState.GetName() == "BossMove" )
+        {
+            m_AudioSource.Play();
+            m_AudioSource.loop = true;
+        }
+        else
+        {
+            m_AudioSource.Stop();
+            m_AudioSource.loop = false;
+        }
     }
 
     void OnDrawGizmos()
@@ -119,6 +131,7 @@ public class BossBrain : BossControler
         {
             damage.damageValue = 50 * damageScale;
             animator.SetTrigger("SpinAttack");
+            m_AudioSource.PlayOneShot(attackSound, 1);
             attackTime = 5f;
             spinOnCooldown = true;
             StartCoroutine(spinCooldown());
@@ -127,6 +140,7 @@ public class BossBrain : BossControler
         {
             damage.damageValue = 75;
             animator.SetTrigger("OverheadAttack");
+            m_AudioSource.PlayOneShot(attackSound, 1);
             attackTime = 5.5f;
             overheadOnCooldown = true;
             StartCoroutine(overheadCooldown());
@@ -134,6 +148,7 @@ public class BossBrain : BossControler
         else if (!slashOnCooldown)
         {
             damage.damageValue = 25;
+            m_AudioSource.PlayOneShot(attackSound, 1);
             animator.SetTrigger("SlashAttack");
             attackTime = 2f;
             slashOnCooldown = true;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.467
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07066763, g: 0.053229727, b: 0.13593546, a: 0.467}
+  m_IndirectSpecularColor: {r: 0.0008191947, g: 0.0007541025, b: 0.001557607, a: 0.467}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -559,14 +559,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1928588599484125466, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 24d381b815b32d04182be1c74e240894, type: 3}
     - target: {fileID: 2874908650889328502, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: run
+      value: 
+      objectReference: {fileID: 8300000, guid: 24d381b815b32d04182be1c74e240894, type: 3}
+    - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1312825309}
+    - target: {fileID: 3108842732198342331, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+      propertyPath: m_AudioSource
+      value: 
+      objectReference: {fileID: 1201845615}
     - target: {fileID: 3219627895484116428, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1025,6 +1037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1dae235859b8e8419b801046c4456e5, type: 3}
+--- !u!82 &1201845615 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1928588599484125466, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
+  m_PrefabInstance: {fileID: 422992095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1257064934
 PrefabInstance:
   m_ObjectHideFlags: 0
