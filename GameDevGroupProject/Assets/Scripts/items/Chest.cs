@@ -136,7 +136,7 @@ public class Chest : MonoBehaviour
             if (this.gameObject.name == "Chest")
                 CloseChestInventory();
             else if (gameObject.name == "Door")
-                this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Close", true);
+                this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Open", false);
             else if (gameObject.name == "Open Book")
                 CloseSkillBook();
                 interactable = false;

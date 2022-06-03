@@ -924,6 +924,7 @@ GameObject:
   - component: {fileID: 2000385671757667954}
   - component: {fileID: 8332968179060225620}
   - component: {fileID: 3108842732198342331}
+  - component: {fileID: 2765228991291824916}
   - component: {fileID: 3108842732198342329}
   m_Layer: 8
   m_Name: Player
@@ -1070,6 +1071,18 @@ MonoBehaviour:
   playerHealth: 100
   camera: {fileID: 0}
   cameraHeight: 400
+--- !u!114 &2765228991291824916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874908650889328502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74145210a4f20b54fa12ee5ff9392d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3108842732198342329
 MonoBehaviour:
   m_ObjectHideFlags: 0
