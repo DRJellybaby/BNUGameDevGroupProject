@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.467
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07066763, g: 0.053229727, b: 0.13593546, a: 0.467}
+  m_IndirectSpecularColor: {r: 0.0008191947, g: 0.0007541025, b: 0.001557607, a: 0.467}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -623,7 +623,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2765228991291824916, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cc6f6f89e3ba9df4094cba673e3d5429, type: 3}
 --- !u!114 &422992096 stripped
 MonoBehaviour:
@@ -1372,6 +1373,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 5206655199347508301, guid: d8c57dd82462420478e04b408f85ad1c, type: 3}
+      propertyPath: m_TagString
+      value: Portal
+      objectReference: {fileID: 0}
     - target: {fileID: 5648660033999422887, guid: d8c57dd82462420478e04b408f85ad1c, type: 3}
       propertyPath: m_Name
       value: Hub
@@ -1462,6 +1467,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8c57dd82462420478e04b408f85ad1c, type: 3}
+--- !u!1 &1795635546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5206655199347508301, guid: d8c57dd82462420478e04b408f85ad1c, type: 3}
+  m_PrefabInstance: {fileID: 1795635545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1795635547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795635546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08109914, y: 0.10785319, z: 0.050139662}
+  m_Center: {x: 0.00000008852814, y: -0.041226614, z: 0.0000024405597}
 --- !u!1 &1875525738
 GameObject:
   m_ObjectHideFlags: 0
