@@ -147,7 +147,7 @@ public class PlayerControler : MonoBehaviour
         //Debug.Log("attack");
         playerAnimator.SetTrigger("Attack");
 
-        transform.LookAt(mousePos);
+        //transform.LookAt(mousePos);
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
