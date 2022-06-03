@@ -9,7 +9,7 @@ public class BossControler : MonoBehaviour
 
     [HideInInspector] public Senses sight;
     [HideInInspector] public CharacterController characterController;
-    [HideInInspector] public Animator animator;
+    public Animator animator;
     [HideInInspector] public Transform Player;
     [HideInInspector] public float distanceToTarget;
 

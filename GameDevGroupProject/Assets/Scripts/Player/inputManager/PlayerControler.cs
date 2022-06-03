@@ -12,19 +12,19 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100;
     [SerializeField] private float rollDistance = 80f;
     [SerializeField] private float rollTime = 1;
-    [SerializeField] public GameObject Dead;
+    [SerializeField] private GameObject Dead;
     public bool isRolling;
 
-    [SerializeField] public bool isAttacking;
-    [SerializeField] public bool takingDamage;
+    public bool isAttacking;
+    public bool takingDamage;
     public bool vulnerable = true;
-    [SerializeField] public float attackRate;
+    public float attackRate;
 
     private bool canInteract = true; //a bool value that changes when an object finds player as a trigger (collider)
 
-    [SerializeField] public float playerHealth;
+    public float playerHealth;
 
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera mainCamera;
     public int cameraHeight;
 
     private Vector2 moveInput;
@@ -40,7 +40,7 @@ public class PlayerControler : MonoBehaviour
     private InputAction rollAction;
     private InputAction attackAction;
 
-    [SerializeField] private AudioSource m_AudioSource;
+    public AudioSource m_AudioSource;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip run;
 
@@ -58,7 +58,7 @@ public class PlayerControler : MonoBehaviour
         rollAction = playerInput.actions["Roll"];
         attackAction = playerInput.actions["Attack"];
         Dead.SetActive(false);
-        camera = Camera.main;
+        mainCamera = Camera.main;
 
         m_AudioSource = GetComponent<AudioSource>();
     }
@@ -70,7 +70,7 @@ public class PlayerControler : MonoBehaviour
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         mousePos = playerInput.actions["mousePosition"].ReadValue<Vector2>();
-        mousePos = camera.WorldToViewportPoint(mousePos);
+        mousePos = mainCamera.WorldToViewportPoint(mousePos);
     }
 
     void OnTriggerEnter(Collider other)
@@ -106,7 +106,7 @@ public class PlayerControler : MonoBehaviour
     public void cameraFollow()
     {
         Vector3 follow = new Vector3(transform.position.x, cameraHeight, transform.position.z);
-        camera.transform.position = follow;
+        mainCamera.transform.position = follow;
     }
 
     public void movment()

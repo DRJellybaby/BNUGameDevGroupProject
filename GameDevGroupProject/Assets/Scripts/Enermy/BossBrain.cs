@@ -22,8 +22,6 @@ public class BossBrain : BossControler
     [HideInInspector] public bool chasing;
     [HideInInspector] public NavMeshAgent navMeshAgent;
 
-    [HideInInspector] public Animator animator;
-
     [HideInInspector] public bool returning;
     [HideInInspector] public Quaternion startRotation;
 
@@ -33,20 +31,6 @@ public class BossBrain : BossControler
     public enum BossAIStates { BossIdle, BossMove, BossDie, BossAttack};
     public FSM<BossAIStates> BossStateMachine;
     protected float thinkInterval = 0.4f;
-
-    void Start()
-    {
-        base.Start();
-        StartCoroutine(Think());
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        animator = GetComponent<Animator>();
-        startRotation = GetComponent<Transform>().rotation;
-        if(gameObject.name == "Demon GreatSword") { attackRange = 25; damageScale = 0.7f; }
-        else if(gameObject.name == "Demon_Boss_Rig") { attackRange = 60; damageScale = 1f; }
-
-        damage = gameObject.transform.GetChild(0).GetComponent<enermyAttack>();
-        distanceToPlayer = sight.getDistance();
-    }
 
     // Update is called once per frame
     void Update()
@@ -163,6 +147,17 @@ public class BossBrain : BossControler
 
     protected void Awake()
     {
+        base.Start();
+        StartCoroutine(Think());
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        animator = GetComponent<Animator>();
+        startRotation = GetComponent<Transform>().rotation;
+        if (gameObject.name == "Demon GreatSword") { attackRange = 25; damageScale = 0.7f; }
+        else if (gameObject.name == "Demon_Boss_Rig") { attackRange = 60; damageScale = 1f; }
+
+        damage = gameObject.transform.GetChild(0).GetComponent<enermyAttack>();
+        distanceToPlayer = sight.getDistance();
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         //Finite State Machine
         BossStateMachine = new FSM<BossAIStates>();

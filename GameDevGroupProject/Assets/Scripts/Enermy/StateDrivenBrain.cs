@@ -19,28 +19,15 @@ public class StateDrivenBrain : EnermyControler
     [HideInInspector] public bool chasing;
     [HideInInspector] public NavMeshAgent navMeshAgent;
 
-    [HideInInspector] public Animator animator;
-
     [HideInInspector] public bool returning;
     [HideInInspector] public Quaternion startRotation;
 
-    [SerializeField] private AudioSource m_AudioSource;
-    [SerializeField] private AudioClip attackSound;
-    [SerializeField] private AudioClip run;
+    public AudioSource m_AudioSource;
+    public AudioClip attackSound;
 
     public enum AIStates { Idle, Chase, Attack, Hold, SearchArea, Return, Death };
     public FSM<AIStates> stateMachine;
     protected float thinkInterval = 0f;
-
-    void Start()
-    {
-        base.Start();
-        StartCoroutine(Think());
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        animator = GetComponent<Animator>();
-        startRotation = GetComponent<Transform>().rotation;
-        m_AudioSource = GetComponent<AudioSource>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -101,7 +88,14 @@ public class StateDrivenBrain : EnermyControler
 
     protected void Awake()
     {
+        base.Start();
+        StartCoroutine(Think());
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        animator = GetComponent<Animator>();
+        startRotation = GetComponent<Transform>().rotation;
+        m_AudioSource = GetComponent<AudioSource>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+
         //Finite State Machine
         stateMachine = new FSM<AIStates>();
         stateMachine.AddState(new Idle<AIStates>(AIStates.Idle, this, 0f));

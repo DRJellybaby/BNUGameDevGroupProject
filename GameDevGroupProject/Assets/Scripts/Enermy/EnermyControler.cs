@@ -12,7 +12,7 @@ public class EnermyControler : MonoBehaviour
 
     public Senses sight;
     public CharacterController characterController;
-    [HideInInspector] public Animator animator;
+    public Animator animator;
 
     public Transform origin;
 
