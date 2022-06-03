@@ -71,7 +71,6 @@ public class PlayerControler : MonoBehaviour
     {
         if(other.tag == "Portal")
         {
-            Debug.Log("Teleport");
             SceneManager.LoadScene(1);
         }
     }
