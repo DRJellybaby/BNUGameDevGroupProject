@@ -12,13 +12,14 @@ public class InventoryManagerSystem : MonoBehaviour {
     }
 
     public void Add(GameObject item) {
-        int max = GetMax(item);
+        
         // GameObjects that can be placed in the Inventory must have a pickup script component attached
         ItemStat itemStatScript = item.GetComponent<ItemStat>();
-        
+        int max = itemStatScript.maxInventoryCapacity;
         if (GetBalance(item) >= max || max == 999 || itemStatScript == null)
             return;
             inventory.Add(item);
+        Debug.Log("cry");
     }
 
     public bool Use(GameObject searchItem)

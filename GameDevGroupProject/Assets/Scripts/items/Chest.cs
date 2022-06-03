@@ -51,7 +51,7 @@ public class Chest : MonoBehaviour
                     if((CheckForUnlock() && locked) || !locked)
                     {
                         UIInteractText.SetActive(false);
-                        animator.SetBool("Open", !animator.GetBool("Open"));
+                        this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Open", true);
                     }
                     else
                     {
@@ -63,7 +63,7 @@ public class Chest : MonoBehaviour
         }
     }
 
-    IEnumerator Showlocked()
+    IEnumerator ShowLocked()
     {
         UILockedText.SetActive(true);
         yield return new WaitForSeconds(2.0f);
@@ -72,11 +72,16 @@ public class Chest : MonoBehaviour
 
     bool CheckForUnlock()
     {
-        if (GameObject.FindWithTag("Player").GetComponent<InventoryManagerSystem>().FindItem("Key") != null)
+        if (GameObject.FindWithTag("Inventory").GetComponent<InventoryManagerSystem>().FindItem("Key") != null)
         {
+            Debug.Log("key exists");
             return true;
         }
-        else return false;
+        else
+        {
+            Debug.Log("key does not exist");
+            return false;
+        }
     }
 
     void OpenChestInventory()
@@ -110,7 +115,10 @@ public class Chest : MonoBehaviour
         if (other.tag == "Player")
         {
             UIInteractText.SetActive(false);
-            CloseChestInventory();
+            if (this.gameObject.name == "Chest")
+                CloseChestInventory();
+            if (gameObject.name == "Door")
+                this.gameObject.GetComponentInChildren<Animator>().SetBool("Door Close", true);
             interactable = false;
         }
     }

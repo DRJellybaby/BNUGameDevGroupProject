@@ -111,6 +111,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2914290021020220483}
+  - component: {fileID: 1160657526034859189}
+  - component: {fileID: 2274495999119278622}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -133,6 +135,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160657526034859189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914290021020220482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93962d1388dad984db98543611412f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1
+  UIInteractText: {fileID: 0}
+  UILockedText: {fileID: 0}
+  chestInventory: []
+--- !u!65 &2274495999119278622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914290021020220482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 7.5, z: -6.5}
 --- !u!1 &4611506129709271265
 GameObject:
   m_ObjectHideFlags: 0

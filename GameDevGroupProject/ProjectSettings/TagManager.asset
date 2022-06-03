@@ -10,6 +10,8 @@ TagManager:
   - ChasePoint
   - Origin
   - Armour
+  - Inventory
+  - Key
   layers:
   - Default
   - TransparentFX

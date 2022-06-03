@@ -141,10 +141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2537290663649896282, guid: 46b141e39f8c6734a921b5ede9665781, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1160657526034859189, guid: 46b141e39f8c6734a921b5ede9665781, type: 3}
+      propertyPath: UILockedText
+      value: 
+      objectReference: {fileID: 2024614716}
+    - target: {fileID: 1160657526034859189, guid: 46b141e39f8c6734a921b5ede9665781, type: 3}
+      propertyPath: UIInteractText
+      value: 
+      objectReference: {fileID: 2024614716}
     - target: {fileID: 2914290021020220482, guid: 46b141e39f8c6734a921b5ede9665781, type: 3}
       propertyPath: m_Name
       value: Door
@@ -749,6 +753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon_Boss_Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 438956113539900512, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 962834562465431258, guid: 32de101635c2d6f458aa23eeb875b4a7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1273,6 +1281,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55381864318765202, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
+      propertyPath: UIInteractText
+      value: 
+      objectReference: {fileID: 2024614716}
+    - target: {fileID: 55381864318765202, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
+      propertyPath: chestInventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 1624229991}
+    - target: {fileID: 55381864318765202, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
+      propertyPath: chestInventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 900043911}
     - target: {fileID: 526491239571138503, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1323,29 +1343,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
---- !u!1 &55381864318765201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 866283576521293181, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
+--- !u!114 &55381864318765202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 55381864318765202, guid: b879a16a34d02464d89b8add96abea7d, type: 3}
   m_PrefabInstance: {fileID: 55381864318765200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &55381864318765202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55381864318765201}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93962d1388dad984db98543611412f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locked: 0
-  UIInteractText: {fileID: 2024614716}
-  UILockedText: {fileID: 0}
-  chestInventory:
-  - {fileID: 1624229991}
-  - {fileID: 900043911}
 --- !u!1001 &517474612237334544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1457,6 +1465,10 @@ PrefabInstance:
     - target: {fileID: 3570058106668051176, guid: 8ea18b9ca3a6e2942829586a634200bf, type: 3}
       propertyPath: m_Name
       value: Demon_Boss_Rig_Ragdoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570058106668051176, guid: 8ea18b9ca3a6e2942829586a634200bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3570058106668051092, guid: 8ea18b9ca3a6e2942829586a634200bf, type: 3}
